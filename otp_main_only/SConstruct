@@ -1,0 +1,25 @@
+import os
+env = Environment(ENV = os.environ)
+env['SDK_ROOT'] = Dir('../../')
+env.SConscript(env['SDK_ROOT'].File('soc/SConscript'),exports=['env'])
+src = [
+    'main.c',
+    'asm_swint.c',
+    '../otp_patch_driver/otp_patch.c',
+    env['SDK_ROOT'].File('hal_driver/src/otbn/text_array/otbn_text.c').abspath#str path
+#     env['SDK_ROOT'].File('hal_driver/src/otbn/text_array/otbn_text.c')
+#     '/home/eunice/zephyr_workspace/ls_sdk/examples/peripheral/otp_patch/otp_patch_driver/otp_patch.c',
+#     '/home/eunice/zephyr_workspace/ls_sdk/hal_driver/src/otp_patch.c',  # 确保 otp_patch.c 被包含
+#     '/home/eunice/zephyr_workspace/ls_sdk/hal_driver/src/otbn/text_array/otbn_text.c'
+]
+inc = [
+    '.',
+    './',
+    '../otp_patch_driver',
+    env['SDK_ROOT'].Dir('bootloader/boot_ram/qsh').abspath,# add boot.h contents
+#     '/home/eunice/zephyr_workspace/ls_sdk/bootloader/boot_ram/qsh',  # 添加boot.h所在目录
+#     '/home/eunice/zephyr_workspace/ls_sdk/examples/peripheral/otp_patch/otp_patch_driver'
+]
+# env.Append(CCFLAGS = '-save-temps')
+env.Append(CCFLAGS = ['-save-temps', '-fstack-usage'])
+env.app_build('otp_main_only',src,inc,ble = False)

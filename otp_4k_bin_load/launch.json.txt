@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+	{
+		"name": "otp_4k_bin",
+		"type": "gdb",
+		"request": "attach",
+		"target": "192.168.6.116:1025",
+		"executable": "examples/peripheral/otp_4k_bin_load/build/qsh/otp_4k_bin.elf",
+		"cwd": "${workspaceFolder}",
+		"remote": true,
+		"gdbpath": "/opt/toolchain/Xuantie-900-gcc-elf-newlib-x86_64-V2.10.1/bin/riscv64-unknown-elf-gdb",
+		"autorun": [
+			"set output-radix 16",
+			"set mem inaccessible-by-default off",
+			"mem 0x08000000 0x08ffffff ro",
+			"reset",
+			"load",
+			"set $pc = 0x10000000",
+			// "set $pc = 0x10000800",
+			"hb main",
+
+			// "interrupt",
+		],
+	},
+    ]
+}

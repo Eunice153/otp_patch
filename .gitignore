@@ -1,0 +1,3 @@
+# 仅忽略指定的 build 目录和特定的工程目录
+otp_4k_bin_load/build/
+otp_main_only/build/

@@ -1,0 +1,233 @@
+/*1.一段的代码*/
+int Set_password_or_check(const char *input_password_str)
+{
+	// uint32_t otp_pwd = 0;
+	uint8_t output_hash[32] = {0};
+	uint8_t stored_hash[32] = {0};
+	uint8_t lock_flag = 0xFF;
+	password_status = false;
+
+	/* "null" 表示立即锁权限，防止提权窗口 */
+	if (input_password_str == NULL) {return ACK_SUCCESS;}
+
+	uint32_t pwd_len = strlen(input_password_str);
+	if (pwd_len < 12||pwd_len > 32) {return ACK_ERR_INVALID_ID;}
+
+	/*读取第 33 字节判断是否已设置过初始密码 */
+	// 如果此位为 0，表示已初始化，不再允许写入
+	if (HAL_OTP_Read(OTP_PWD_ADDR + 32, &lock_flag, 1) != 0) {LOG_E("Read OTP flag failed.");return ACK_ERR_GENERIC;}
+
+	SM3_cal((const uint8_t *)input_password_str, pwd_len, output_hash);
+	if (lock_flag==0xff) {
+		uint8_t init_done_flag = 0x00;
+		// SM3_cal((const uint8_t *)input_password_str, pwd_len, output_hash);
+		if (HAL_OTP_Write(OTP_PWD_ADDR, output_hash, 32) != 0) {LOG_E("Write OTP hash failed.");return ACK_ERR_GENERIC;}
+		if (HAL_OTP_Write(OTP_PWD_ADDR + 32, &init_done_flag, 1) != 0) {LOG_E("Write OTP lock flag failed.");return ACK_ERR_GENERIC;}
+		// password_status = false;
+		return ACK_SUCCESS;
+	}else if (lock_flag==0) {
+		if (HAL_OTP_Read(OTP_PWD_ADDR, stored_hash, 32) != 0) {LOG_E("Read stored hash failed.");return ACK_ERR_GENERIC;}
+		if (memcmp(output_hash, stored_hash, 32) == 0) {
+			password_status = true;
+			// LOG_I("Password matched! Unlocked.");
+			return ACK_SUCCESS;
+		} else {
+			// LOG_W("Password mismatch!");
+			return ACK_ERR_NO_PERMISSION;
+		}
+	}
+		// LOG_E("Write OTP lock flag failed.");
+		return ACK_ERR_OTP;
+}
+
+/*2.分成两段的代码*/
+/**
+ * @brief Set_password: 校验用户密码
+ * @param input_password_str 传入密码
+ * @note 如果密码存在则无法设置，如果密码不存在则设置密码
+ */
+int Set_password(const char *input_password_str)
+{
+	// password_status = false;
+	/* "null" 表示立即锁权限，防止提权窗口 */
+	// if (input_password_str == NULL) {return ACK_SUCCESS;}
+
+	// uint32_t otp_pwd = 0;
+	uint8_t output_hash[32] = {0};
+	// uint8_t stored_hash[32] = {0};
+	uint8_t lock_flag = 0xFF;
+
+	/*读取第 33 字节判断是否已设置过初始密码 */
+	// 如果此位为 0，表示已初始化，不再允许写入
+	if (HAL_OTP_Read(OTP_PWD_ADDR + 32, &lock_flag, 1) != 0) {LOG_E("Read OTP flag failed.");return ACK_ERR_GENERIC;}
+	if (lock_flag==0){
+		return ACK_SLOT_EXISTED;
+	}else if (lock_flag==0xff) {
+		uint32_t pwd_len = strlen(input_password_str);
+		if (pwd_len < 12||pwd_len > 32) {return ACK_ERR_INVALID_ID;}
+		SM3_cal((const uint8_t *)input_password_str, pwd_len, output_hash);
+		uint8_t init_done_flag = 0x00;
+		// SM3_cal((const uint8_t *)input_password_str, pwd_len, output_hash);
+		if (HAL_OTP_Write(OTP_PWD_ADDR, output_hash, 32) != 0) {LOG_E("Write OTP hash failed.");return ACK_ERR_GENERIC;}
+		if (HAL_OTP_Write(OTP_PWD_ADDR + 32, &init_done_flag, 1) != 0) {LOG_E("Write OTP lock flag failed.");return ACK_ERR_GENERIC;}
+		// password_status = false;
+		return ACK_SUCCESS;
+	}
+	return ACK_ERR_OTP;
+}
+
+/**
+ * @brief Check_password: 校验用户密码
+ * @param input_password_str 传入密码
+ * @note 逻辑：读取 硬件密码进行比对；错误密码将锁定权限。
+ */
+int Check_password(const char *input_password_str)
+{
+	// uint32_t otp_pwd = 0;
+	uint8_t output_hash[32] = {0};
+	uint8_t stored_hash[32] = {0};
+	uint8_t lock_flag = 0xFF;
+	if (HAL_OTP_Read(OTP_PWD_ADDR + 32, &lock_flag, 1) != 0) {LOG_E("Read OTP flag failed.");return ACK_ERR_GENERIC;}
+	if (lock_flag==0){
+		// password_status = false;
+		uint32_t pwd_len = strlen(input_password_str);
+		SM3_cal((const uint8_t *)input_password_str, pwd_len, output_hash);
+		if (HAL_OTP_Read(OTP_PWD_ADDR, stored_hash, 32) != 0) {LOG_E("Read stored hash failed.");return ACK_ERR_GENERIC;}
+		if (memcmp(output_hash, stored_hash, 32) == 0) {
+			// password_status = true;
+			return ACK_SUCCESS;
+		} else {
+			return ACK_ERR_NO_PERMISSION;
+		}
+	}else if (lock_flag==0xFF) {
+		return ACK_SLOT_NO_SET;
+	}
+	return ACK_ERR_OTP;
+}
+
+/**
+ * @brief StoreKey: 将 TMP 数组下载到otp
+ * @param id 源 ID (必须是 IDx_TMP_SM2_DEC, IDx_TMP_SM2_SIGN, 或 IDx_TMP_SM4)
+ *	  input_password 传入的密码
+ * @return
+ */
+int StoreKey(key_id_x id, const char *input_password_str)
+{
+
+	// 调用现有检查函数，拦截未授权访问
+	if (Check_password(input_password_str) != ACK_SUCCESS) {
+		return ACK_ERR_NO_PERMISSION;
+	}
+
+	// 校验：只有 TMP 密钥（ID 3, 4, 5）可以执行 Store 动作
+	uint32_t otp_addr = 0;
+	uint32_t key_len = 0;
+	uint8_t output_hash[32] = {0};
+	uint8_t lock_flag = 0xFF;
+	switch (id) {
+		case IDx_TMP_SM2_DEC:
+			otp_addr = OTP_SM2_DEC_ADDR;//0x421
+			key_len = 32;
+		break;
+		case IDx_TMP_SM2_SIGN:
+			otp_addr =OTP_SM2_SIGN_ADDR;//0x446
+			key_len = 32;
+		break;
+		case IDx_TMP_SM4:
+			otp_addr = OTP_SM4_KEY_ADDR;//0x46B
+			key_len = 16;
+		break;
+		default:
+		return ACK_ERR_INVALID_ID; // 不支持的 ID
+	}
+	if (HAL_OTP_Read(otp_addr + key_len + 4, &lock_flag, 1) != 0) {return ACK_ERR_GENERIC;}
+	if (lock_flag == 0) {return ACK_SLOT_EXISTED; }
+	else if ((lock_flag!=0)&&(lock_flag!=0xFF)) {return ACK_ERR_OTP;}
+	SM3_cal(key_data_table[id], key_len, output_hash);
+	if (HAL_OTP_Write(otp_addr, key_data_table[id], key_len) != 0) {return ACK_ERR_GENERIC;}
+	if (HAL_OTP_Write(otp_addr + key_len, output_hash, 4) != 0) {return ACK_ERR_GENERIC;}
+	uint8_t init_done_flag = 0x00;
+	if (HAL_OTP_Write(otp_addr + key_len + 4, &init_done_flag, 1) != 0) {return ACK_ERR_GENERIC;}
+	return ACK_SUCCESS;
+}
+
+/**
+ * @brief : 将 OTP密钥加载到sram_otp
+ * @param id  ID (必须是 IDx_OTP_SM2_DEC, IDx_OTP_SM2_SIGN, 或 IDx_OTP_SM4)
+ *	  input_password_str 传入的密码
+ * @return
+ */
+int Load_sram_otp(key_id_x id, const char *input_password_str)
+{
+
+	// 调用现有检查函数，拦截未授权访问
+	if (Check_password(input_password_str) != ACK_SUCCESS) {
+		return ACK_ERR_NO_PERMISSION;
+	}
+
+	// 校验：只有 TMP 密钥（ID 3, 4, 5）可以执行 Store 动作
+	uint32_t otp_addr = 0;
+	uint32_t key_len = 0;
+	uint8_t output_hash[32] = {0};
+	uint8_t stored_hash[4];
+	uint8_t lock_flag = 0xFF;
+	switch (id) {
+		case IDx_OTP_SM2_DEC:
+			otp_addr = OTP_SM2_DEC_ADDR;//0x421
+			key_len = 32;
+		break;
+		case IDx_OTP_SM2_SIGN:
+			otp_addr =OTP_SM2_SIGN_ADDR;//0x446
+			key_len = 32;
+		break;
+		case IDx_OTP_SM4:
+			otp_addr = OTP_SM4_KEY_ADDR;//0x46B
+			key_len = 16;
+		break;
+		default:
+		return ACK_ERR_INVALID_ID; // 不支持的 ID
+	}
+	if (HAL_OTP_Read(otp_addr + key_len + 4, &lock_flag, 1) != 0) {return ACK_ERR_GENERIC;}
+	if (lock_flag == 0xFF) {return ACK_SLOT_NO_SET; }
+	else if ((lock_flag!=0)&&(lock_flag!=0xFF)) {return ACK_ERR_OTP;}
+	if (HAL_OTP_Read(otp_addr + key_len, stored_hash, 4) != 0) {return ACK_ERR_GENERIC;}
+	if (HAL_OTP_Read(otp_addr,key_data_table[id], key_len) != 0) {return ACK_ERR_GENERIC;}
+	SM3_cal(key_data_table[id], key_len, output_hash);
+	if (memcmp(output_hash, stored_hash, 4) != 0){
+		memset(key_data_table[id], 0, key_len);
+		return ACK_ERR_OTP;
+	}
+
+	return ACK_SUCCESS;
+}
+
+/**
+ * @brief DestroyKey: 支持删除TMP数组相应数据、OTP数组对应的数据以及OTP内容
+ * @param id  ID (必须是 IDx_OTP_SM2_DEC IDx_OTP_SM2_SIGN ，IDx_OTP_SM4，IDx_TMP_SM2_DEC, IDx_TMP_SM2_SIGN, 或 IDx_TMP_SM4)
+ *	  input_password_str 传入的密码(仅销毁 OTP 密钥时校验)
+ * @return
+ */
+int DestroyKey(key_id_x id, const char *input_password_str)
+{
+	uint32_t otp_addr = 0;
+	uint32_t key_len = 0;
+	uint8_t zero_buf[32] = {0};
+	uint8_t lock_flag = 0xFF;
+
+	if (id < IDx_OTP_SM2_DEC || id > IDx_TMP_SM4) {return ACK_ERR_INVALID_ID;}
+
+	if (id >= IDx_OTP_SM2_DEC && id <= IDx_OTP_SM4) {
+		if (Check_password(input_password_str) != ACK_SUCCESS) {return ACK_ERR_NO_PERMISSION;}
+		if (id == IDx_OTP_SM2_DEC) {otp_addr = OTP_SM2_DEC_ADDR;key_len = 32;}
+		else if (id == IDx_OTP_SM2_SIGN) {otp_addr = OTP_SM2_SIGN_ADDR;key_len = 32;}
+		else{otp_addr = OTP_SM4_KEY_ADDR;key_len = 16;}
+
+		if (HAL_OTP_Read(otp_addr + key_len + 4, &lock_flag, 1) != 0) {return ACK_ERR_GENERIC;}
+		if (lock_flag == 0xFF) {return ACK_SLOT_NO_SET;}
+		if (HAL_OTP_Write(otp_addr, zero_buf, key_len) != 0) return ACK_ERR_GENERIC;
+		if (HAL_OTP_Write(otp_addr + key_len, zero_buf, 4) != 0) return ACK_ERR_GENERIC;
+	}else {key_len = (id == IDx_TMP_SM4) ? 16 : 32;}
+
+	if (key_data_table[id] != NULL) {memset(key_data_table[id], 0, key_len);}
+	return ACK_SUCCESS;
+}
