@@ -1,0 +1,61 @@
+OTP patch 合并流程（otp_patch2）
+
+一、目录里的文件
+  otp_patch_first_0x200.bin       前 0x200 字节 OTP 配置（含 ali secmode 设置）
+  otp_patch_first_0x200_array.h   上面文件的 C 数组
+  otp_patch.bin                   代码 bin 的本地副本（3306 字节）
+  otp_patch_with_bin_v2.py        合并脚本
+  otp_patch_with_bin_v2.bin       合并后的 OTP 数据（本次 4074 字节）
+  otp_patch_with_bin_v2.h         合并后数据的 C 数组
+
+二、输入
+  1. 前 0x200 配置：otp_patch_first_0x200.bin
+     - 0x8C/0xD8 不用手改，脚本会用代码 bin 的长度/CRC 覆盖。
+     - 其余 ali secmode 配置保持文件原样。
+  2. 代码 bin：otp_patch_driver/otp_patch.bin（当前 3306 字节，CRC=0xC701E598）
+     脚本默认路径：../../../../otp_patch_driver/otp_patch.bin
+  3. 代码偏移：--offset，默认 0x300，必须是 0x20 的倍数。
+
+三、使用
+  cd ...（otp_patch2）
+  python3 otp_patch_with_bin_v2.py
+
+  手动指定：
+  python3 otp_patch_with_bin_v2.py \
+      --bin ../../../../otp_patch_driver/otp_patch.bin \
+      --first200 otp_patch_first_0x200.bin \
+      --offset 0x300
+
+四、脚本生成规则
+  1. 建 max(0x400, offset+代码长度) 字节缓冲区，全部填 0xFF。
+  2. 0x000~0x1FF 用 first200 覆盖。
+  3. 代码 bin 放到 offset（默认 0x300）。
+  4. 覆盖头字段：
+       0x8C      = 0xFF
+       0x8D      = offset / 0x20      （0x300 -> 0x18）
+       0x8E~0x8F = 代码长度小端       （3306 -> EA 0C）
+       0xD8~0xDB = 代码 CRC 小端      （0xC701E598 -> 98 E5 01 C7）
+  5. 输出长度 = max(0x400, offset+代码长度)，不补齐到 4K。
+     当前：0x300 + 0xCEA = 0xFEA = 4074 字节。
+
+五、当前结果
+  0x000~0x1FF  first200
+  0x200~0x2FF  0xFF（其中 0x280~0x2FF 是 OTP 密钥区）
+  0x300~0xFEA  代码（3306 字节）
+  0x8C word = 0x0CEA18FF
+  0xD8 word = 0xC701E598
+
+六、OTP 密钥区（在 CRC 覆盖范围之外，可后续写入）
+  0x280  口令 hash 32B + flag 1B
+  0x2A1  SM2 解密私钥 32B + hash 4B + flag 1B
+  0x2C6  SM2 签名私钥 32B + hash 4B + flag 1B
+  0x2EB  SM4 密钥 16B + hash 4B + flag 1B
+  结束    0x300
+
+七、限制
+  - offset 必须 0x20 对齐，且 >= 0x200。
+  - offset + 代码长度 <= 0x1000，否则脚本报错。
+  - 代码运行时地址固定为 0x1013f14e；ROM 从 OTP 的 offset 读 patch，
+    搬到 0x1013f14e 后跳转，所以 app 里的 asm_swint.h 地址不用改。
+  - 代码 bin 变化后重新运行脚本，脚本会自动更新长度和 CRC。
+  - 输出 bin 不补齐到 4K，写到代码结束为止。

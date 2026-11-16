@@ -6,44 +6,44 @@ EXEC_P, HAS_SYMS, D_PAGED
 start address 0x1013f14e
 
 Program Header:
-0x70000003 off    0x0000931d vaddr 0x00000000 paddr 0x00000000 align 2**0
+0x70000003 off    0x00008ea0 vaddr 0x00000000 paddr 0x00000000 align 2**0
          filesz 0x000000e4 memsz 0x00000000 flags r--
     LOAD off    0x00000000 vaddr 0x1013f000 paddr 0x1013f000 align 2**12
-         filesz 0x00000e30 memsz 0x00000f10 flags rwx
+         filesz 0x00000e38 memsz 0x00000f18 flags rwx
    STACK off    0x00000000 vaddr 0x00000000 paddr 0x00000000 align 2**4
          filesz 0x00000000 memsz 0x00000000 flags rw-
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         00000ce2  1013f14e  1013f14e  0000014e  2**1
+  0 .text         00000cea  1013f14e  1013f14e  0000014e  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .bss          000000e0  1013fe30  1013fe30  00000e30  2**2
+  1 .bss          000000e0  1013fe38  1013fe38  00000e38  2**2
                   ALLOC
-  2 .debug_info   00002c04  00000000  00000000  00000e30  2**0
+  2 .debug_info   0000295c  00000000  00000000  00000e38  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  3 .debug_abbrev 000005b5  00000000  00000000  00003a34  2**0
+  3 .debug_abbrev 00000538  00000000  00000000  00003794  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  4 .debug_loclists 00001019  00000000  00000000  00003fe9  2**0
+  4 .debug_loclists 0000102d  00000000  00000000  00003ccc  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  5 .debug_aranges 00000108  00000000  00000000  00005002  2**0
+  5 .debug_aranges 00000108  00000000  00000000  00004cf9  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  6 .debug_rnglists 00000165  00000000  00000000  0000510a  2**0
+  6 .debug_rnglists 00000171  00000000  00000000  00004e01  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  7 .debug_line   00002078  00000000  00000000  0000526f  2**0
+  7 .debug_line   000020bb  00000000  00000000  00004f72  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  8 .debug_str    00001bec  00000000  00000000  000072e7  2**0
+  8 .debug_str    00001a4e  00000000  00000000  0000702d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
-  9 .debug_line_str 000003fc  00000000  00000000  00008ed3  2**0
+  9 .debug_line_str 000003d7  00000000  00000000  00008a7b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 10 .comment      0000004e  00000000  00000000  000092cf  2**0
+ 10 .comment      0000004e  00000000  00000000  00008e52  2**0
                   CONTENTS, READONLY
- 11 .riscv.attributes 000000e4  00000000  00000000  0000931d  2**0
+ 11 .riscv.attributes 000000e4  00000000  00000000  00008ea0  2**0
                   CONTENTS, READONLY
- 12 .debug_frame  00000400  00000000  00000000  00009404  2**2
+ 12 .debug_frame  0000040c  00000000  00000000  00008f84  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 SYMBOL TABLE:
 1013f14e l    d  .text	00000000 .text
-1013fe30 l    d  .bss	00000000 .bss
+1013fe38 l    d  .bss	00000000 .bss
 00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
 00000000 l    d  .debug_loclists	00000000 .debug_loclists
@@ -56,29 +56,29 @@ SYMBOL TABLE:
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
 00000000 l    d  .debug_frame	00000000 .debug_frame
 00000000 l    df *ABS*	00000000 otp_patch.c
-1013f9e0 l     F .text	0000001c send_cmd
-1013f9fc l     F .text	00000022 is_key_empty
-1013fa1e l     F .text	00000020 arr_reverse.constprop.0
-1013fa64 l     F .text	000000fa Password_op
-1013fe0e l     O .text	00000003 CSWTCH.58
-1013fe0e l     O .text	00000003 CSWTCH.60
-1013fe30 l     O .bss	00000040 LOAD_PUBKEY_DATA
-1013fef0 l     O .bss	00000020 OTP_SM2_DEC_KEY_DATA
-1013fed0 l     O .bss	00000020 OTP_SM2_SIGN_KEY_DATA
-1013fec0 l     O .bss	00000010 OTP_SM4_KEY_DATA
-1013fea0 l     O .bss	00000020 TMP_SM2_DEC_KEY_DATA
-1013fe80 l     O .bss	00000020 TMP_SM2_SIGN_KEY_DATA
-1013fe70 l     O .bss	00000010 TMP_SM4_KEY_DATA
+1013f9ea l     F .text	0000001c send_cmd
+1013fa06 l     F .text	00000022 is_key_empty
+1013fa28 l     F .text	00000020 arr_reverse.constprop.0
+1013fa6e l     F .text	000000fa Password_op
+1013fe18 l     O .text	00000003 CSWTCH.56
+1013fe18 l     O .text	00000003 CSWTCH.58
+1013fe38 l     O .bss	00000040 LOAD_PUBKEY_DATA
+1013fef8 l     O .bss	00000020 OTP_SM2_DEC_KEY_DATA
+1013fed8 l     O .bss	00000020 OTP_SM2_SIGN_KEY_DATA
+1013fec8 l     O .bss	00000010 OTP_SM4_KEY_DATA
+1013fea8 l     O .bss	00000020 TMP_SM2_DEC_KEY_DATA
+1013fe88 l     O .bss	00000020 TMP_SM2_SIGN_KEY_DATA
+1013fe78 l     O .bss	00000010 TMP_SM4_KEY_DATA
 1013f648 g     F .text	000000ba GetPubKey
 1013f14e g     F .text	00000146 otp_patch_init
 0100ba36 g       *ABS*	00000000 __riscv_restore_3
 01007e84 g       *ABS*	00000000 HAL_OTBN_Init
 0100ba22 g       *ABS*	00000000 __riscv_restore_10
-1013fb96 g     F .text	00000008 SM3_init
+1013fba0 g     F .text	00000008 SM3_init
 01000952 g       *ABS*	00000000 rv_set_int_isr
 0100ba36 g       *ABS*	00000000 __riscv_restore_2
 0100bb14 g       *ABS*	00000000 memcpy
-1013fe30 g       .bss	00000000 _bss_start
+1013fe38 g       .bss	00000000 _bss_start
 01004848 g       *ABS*	00000000 HAL_LSSHA_SM3_Init
 0100ba12 g       *ABS*	00000000 __riscv_save_1
 0100550e g       *ABS*	00000000 HAL_SM4_Decrypt
@@ -91,8 +91,8 @@ SYMBOL TABLE:
 010000c8 g       *ABS*	00000000 SWINT_Handler_ASM
 1013f7ba g     F .text	0000008c ImportKey
 0100ba2c g       *ABS*	00000000 __riscv_restore_6
-1013fd40 g     F .text	000000ce Security_TRNG_SelfTest
-1013ff10 g       .bss	00000000 _bss_end
+1013fd4a g     F .text	000000ce Security_TRNG_SelfTest
+1013ff18 g       .bss	00000000 _bss_end
 0100b888 g       *ABS*	00000000 SM2_G
 1013f2d8 g     F .text	0000002a GenerateKey
 10138fc8 g       *ABS*	00000000 goto_next_mstatus
@@ -108,9 +108,9 @@ SYMBOL TABLE:
 1013f2d2 g     F .text	00000006 Check_password
 1013f5a2 g     F .text	000000a6 trng_derive_key
 1013f846 g     F .text	00000066 SM2_decrypt
-1013fbae g     F .text	000000c8 SM4_CBC_encrypt_process
+1013fbb8 g     F .text	000000c8 SM4_CBC_encrypt_process
 010037ea g       *ABS*	00000000 HAL_OTBN_SM3_Update
-1013fc76 g     F .text	000000ca SM4_CBC_decrypt_process
+1013fc80 g     F .text	000000ca SM4_CBC_decrypt_process
 0100a04c g       *ABS*	00000000 boot_sm2_decrypt
 0100baee g       *ABS*	00000000 memcmp
 01009e30 g       *ABS*	00000000 boot_sm2_encrypt
@@ -124,21 +124,21 @@ SYMBOL TABLE:
 1013f702 g     F .text	0000002e LoadPublicKey
 01004cc8 g       *ABS*	00000000 HAL_OTBN_ECC256_ScalarMult_Polling
 010054ec g       *ABS*	00000000 HAL_SM4_Encrypt
-1013fe14 g     O .text	0000001c key_data_table
-1013fa3e g     F .text	00000016 HAL_TRNG_MSP_Init
+1013fe1c g     O .text	0000001c key_data_table
+1013fa48 g     F .text	00000016 HAL_TRNG_MSP_Init
 0100ba12 g       *ABS*	00000000 __riscv_save_2
 1013f730 g     F .text	0000008a ExportKey
 0100b9f8 g       *ABS*	00000000 __riscv_save_5
 010080be g       *ABS*	00000000 HAL_OTP_Read
 0100ab56 g       *ABS*	00000000 boot_ecc_verify
-1013fb5e g     F .text	00000038 SM2_encrypt
-1013fba6 g     F .text	00000008 SM3_final
-1013fb9e g     F .text	00000008 SM3_update
+1013fb68 g     F .text	00000038 SM2_encrypt
+1013fbb0 g     F .text	00000008 SM3_final
+1013fba8 g     F .text	00000008 SM3_update
 0100ba12 g       *ABS*	00000000 __riscv_save_0
 1013f4be g     F .text	000000e4 DestroyKey
-1013fa54 g     F .text	00000010 strlen
+1013fa5e g     F .text	00000010 strlen
 1013f90a g     F .text	00000036 SM2_verify
-1013f940 g     F .text	000000a0 SM4_enc_dec_process
+1013f940 g     F .text	000000aa SM4_enc_dec_process
 0100ba36 g       *ABS*	00000000 __riscv_restore_1
 1013f302 g     F .text	000000da StoreKey
 010054ce g       *ABS*	00000000 HAL_SM4_KeyExpansion
@@ -154,53 +154,53 @@ Disassembly of section .text:
 1013f156:	10140537          	lui	a0,0x10140
 1013f15a:	02000613          	li	a2,32
 1013f15e:	4581                	li	a1,0
-1013f160:	ef050513          	addi	a0,a0,-272 # 1013fef0 <OTP_SM2_DEC_KEY_DATA>
+1013f160:	ef850513          	addi	a0,a0,-264 # 1013fef8 <OTP_SM2_DEC_KEY_DATA>
 1013f164:	f0ecd097          	auipc	ra,0xf0ecd
 1013f168:	9c8080e7          	jalr	-1592(ra) # 100bb2c <memset>
 1013f16c:	10140537          	lui	a0,0x10140
 1013f170:	02000613          	li	a2,32
 1013f174:	4581                	li	a1,0
-1013f176:	ed050513          	addi	a0,a0,-304 # 1013fed0 <OTP_SM2_SIGN_KEY_DATA>
+1013f176:	ed850513          	addi	a0,a0,-296 # 1013fed8 <OTP_SM2_SIGN_KEY_DATA>
 1013f17a:	f0ecd097          	auipc	ra,0xf0ecd
 1013f17e:	9b2080e7          	jalr	-1614(ra) # 100bb2c <memset>
 1013f182:	10140537          	lui	a0,0x10140
 1013f186:	4641                	li	a2,16
 1013f188:	4581                	li	a1,0
-1013f18a:	ec050513          	addi	a0,a0,-320 # 1013fec0 <OTP_SM4_KEY_DATA>
+1013f18a:	ec850513          	addi	a0,a0,-312 # 1013fec8 <OTP_SM4_KEY_DATA>
 1013f18e:	f0ecd097          	auipc	ra,0xf0ecd
 1013f192:	99e080e7          	jalr	-1634(ra) # 100bb2c <memset>
 1013f196:	10140537          	lui	a0,0x10140
 1013f19a:	02000613          	li	a2,32
 1013f19e:	4581                	li	a1,0
-1013f1a0:	ea050513          	addi	a0,a0,-352 # 1013fea0 <TMP_SM2_DEC_KEY_DATA>
+1013f1a0:	ea850513          	addi	a0,a0,-344 # 1013fea8 <TMP_SM2_DEC_KEY_DATA>
 1013f1a4:	f0ecd097          	auipc	ra,0xf0ecd
 1013f1a8:	988080e7          	jalr	-1656(ra) # 100bb2c <memset>
 1013f1ac:	10140537          	lui	a0,0x10140
 1013f1b0:	02000613          	li	a2,32
 1013f1b4:	4581                	li	a1,0
-1013f1b6:	e8050513          	addi	a0,a0,-384 # 1013fe80 <TMP_SM2_SIGN_KEY_DATA>
+1013f1b6:	e8850513          	addi	a0,a0,-376 # 1013fe88 <TMP_SM2_SIGN_KEY_DATA>
 1013f1ba:	f0ecd097          	auipc	ra,0xf0ecd
 1013f1be:	972080e7          	jalr	-1678(ra) # 100bb2c <memset>
 1013f1c2:	10140537          	lui	a0,0x10140
 1013f1c6:	4641                	li	a2,16
 1013f1c8:	4581                	li	a1,0
-1013f1ca:	e7050513          	addi	a0,a0,-400 # 1013fe70 <TMP_SM4_KEY_DATA>
+1013f1ca:	e7850513          	addi	a0,a0,-392 # 1013fe78 <TMP_SM4_KEY_DATA>
 1013f1ce:	f0ecd097          	auipc	ra,0xf0ecd
 1013f1d2:	95e080e7          	jalr	-1698(ra) # 100bb2c <memset>
 1013f1d6:	10140537          	lui	a0,0x10140
 1013f1da:	04000613          	li	a2,64
 1013f1de:	4581                	li	a1,0
-1013f1e0:	e3050513          	addi	a0,a0,-464 # 1013fe30 <LOAD_PUBKEY_DATA>
+1013f1e0:	e3850513          	addi	a0,a0,-456 # 1013fe38 <LOAD_PUBKEY_DATA>
 1013f1e4:	f0ecd097          	auipc	ra,0xf0ecd
 1013f1e8:	948080e7          	jalr	-1720(ra) # 100bb2c <memset>
 1013f1ec:	040207b7          	lui	a5,0x4020
 1013f1f0:	17fd                	addi	a5,a5,-1 # 401ffff <memset+0x30144d3>
 1013f1f2:	3b079073          	csrw	pmpaddr0,a5
 1013f1f6:	120007b7          	lui	a5,0x12000
-1013f1fa:	17fd                	addi	a5,a5,-1 # 11ffffff <_bss_end+0x1ec00ef>
+1013f1fa:	17fd                	addi	a5,a5,-1 # 11ffffff <_bss_end+0x1ec00e7>
 1013f1fc:	3b179073          	csrw	pmpaddr1,a5
 1013f200:	384007b7          	lui	a5,0x38400
-1013f204:	17fd                	addi	a5,a5,-1 # 383fffff <_bss_end+0x282c00ef>
+1013f204:	17fd                	addi	a5,a5,-1 # 383fffff <_bss_end+0x282c00e7>
 1013f206:	3b279073          	csrw	pmpaddr2,a5
 1013f20a:	3a0027f3          	csrr	a5,pmpcfg0
 1013f20e:	f007f793          	andi	a5,a5,-256
@@ -208,7 +208,7 @@ Disassembly of section .text:
 1013f216:	3a079073          	csrw	pmpcfg0,a5
 1013f21a:	3a0027f3          	csrr	a5,pmpcfg0
 1013f21e:	7741                	lui	a4,0xffff0
-1013f220:	0ff70713          	addi	a4,a4,255 # ffff00ff <_bss_end+0xefeb01ef>
+1013f220:	0ff70713          	addi	a4,a4,255 # ffff00ff <_bss_end+0xefeb01e7>
 1013f224:	8ff9                	and	a5,a5,a4
 1013f226:	6709                	lui	a4,0x2
 1013f228:	b0070713          	addi	a4,a4,-1280 # 1b00 <SWINT_Handler_ASM-0xffe5c8>
@@ -216,7 +216,7 @@ Disassembly of section .text:
 1013f22e:	3a079073          	csrw	pmpcfg0,a5
 1013f232:	3a0027f3          	csrr	a5,pmpcfg0
 1013f236:	ff010737          	lui	a4,0xff010
-1013f23a:	177d                	addi	a4,a4,-1 # ff00ffff <_bss_end+0xeeed00ef>
+1013f23a:	177d                	addi	a4,a4,-1 # ff00ffff <_bss_end+0xeeed00e7>
 1013f23c:	8ff9                	and	a5,a5,a4
 1013f23e:	001b0737          	lui	a4,0x1b0
 1013f242:	8fd9                	or	a5,a5,a4
@@ -228,7 +228,7 @@ Disassembly of section .text:
 1013f256:	700080e7          	jalr	1792(ra) # 1000952 <rv_set_int_isr>
 1013f25a:	e08017b7          	lui	a5,0xe0801
 1013f25e:	4705                	li	a4,1
-1013f260:	06e784a3          	sb	a4,105(a5) # e0801069 <_bss_end+0xd06c1159>
+1013f260:	06e784a3          	sb	a4,105(a5) # e0801069 <_bss_end+0xd06c1151>
 1013f264:	4689                	li	a3,2
 1013f266:	06d78523          	sb	a3,106(a5)
 1013f26a:	02f00693          	li	a3,47
@@ -236,7 +236,7 @@ Disassembly of section .text:
 1013f272:	400227b7          	lui	a5,0x40022
 1013f276:	d7d8                	sw	a4,44(a5)
 1013f278:	30046073          	csrsi	mstatus,8
-1013f27c:	2c5000ef          	jal	1013fd40 <Security_TRNG_SelfTest>
+1013f27c:	2cf000ef          	jal	1013fd4a <Security_TRNG_SelfTest>
 1013f280:	c111                	beqz	a0,1013f284 <otp_patch_init+0x136>
 1013f282:	a001                	j	1013f282 <otp_patch_init+0x134>
 1013f284:	101397b7          	lui	a5,0x10139
@@ -266,11 +266,11 @@ Disassembly of section .text:
 
 1013f2cc <Set_password>:
 1013f2cc:	4581                	li	a1,0
-1013f2ce:	7960006f          	j	1013fa64 <Password_op>
+1013f2ce:	7a00006f          	j	1013fa6e <Password_op>
 
 1013f2d2 <Check_password>:
 1013f2d2:	4585                	li	a1,1
-1013f2d4:	7900006f          	j	1013fa64 <Password_op>
+1013f2d4:	79a0006f          	j	1013fa6e <Password_op>
 
 1013f2d8 <GenerateKey>:
 1013f2d8:	87aa                	mv	a5,a0
@@ -278,7 +278,7 @@ Disassembly of section .text:
 1013f2de:	4509                	li	a0,2
 1013f2e0:	02e56063          	bltu	a0,a4,1013f300 <GenerateKey+0x28>
 1013f2e4:	10140737          	lui	a4,0x10140
-1013f2e8:	e1470713          	addi	a4,a4,-492 # 1013fe14 <key_data_table>
+1013f2e8:	e1c70713          	addi	a4,a4,-484 # 1013fe1c <key_data_table>
 1013f2ec:	44f7450b          	th.lrw	a0,a4,a5,2
 1013f2f0:	ffb78693          	addi	a3,a5,-5
 1013f2f4:	02000613          	li	a2,32
@@ -309,11 +309,11 @@ Disassembly of section .text:
 1013f336:	02500413          	li	s0,37
 1013f33a:	02890433          	mul	s0,s2,s0
 1013f33e:	101407b7          	lui	a5,0x10140
-1013f342:	e0e78793          	addi	a5,a5,-498 # 1013fe0e <CSWTCH.58>
+1013f342:	e1878793          	addi	a5,a5,-488 # 1013fe18 <CSWTCH.56>
 1013f346:	80e7c48b          	th.lrbu	s1,a5,a4,0
 1013f34a:	4605                	li	a2,1
 1013f34c:	00e10593          	addi	a1,sp,14
-1013f350:	1b240413          	addi	s0,s0,434
+1013f350:	23240413          	addi	s0,s0,562
 1013f354:	00940a33          	add	s4,s0,s1
 1013f358:	004a0993          	addi	s3,s4,4
 1013f35c:	854e                	mv	a0,s3
@@ -331,7 +331,7 @@ Disassembly of section .text:
 1013f380:	5569                	li	a0,-6
 1013f382:	fee794e3          	bne	a5,a4,1013f36a <StoreKey+0x68>
 1013f386:	101407b7          	lui	a5,0x10140
-1013f38a:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f38a:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f38e:	4527c90b          	th.lrw	s2,a5,s2,2
 1013f392:	0810                	addi	a2,sp,16
 1013f394:	85a6                	mv	a1,s1
@@ -382,11 +382,11 @@ Disassembly of section .text:
 1013f40c:	02500413          	li	s0,37
 1013f410:	02890433          	mul	s0,s2,s0
 1013f414:	101407b7          	lui	a5,0x10140
-1013f418:	e0e78793          	addi	a5,a5,-498 # 1013fe0e <CSWTCH.58>
+1013f418:	e1878793          	addi	a5,a5,-488 # 1013fe18 <CSWTCH.56>
 1013f41c:	8127c48b          	th.lrbu	s1,a5,s2,0
 1013f420:	4605                	li	a2,1
 1013f422:	00b10593          	addi	a1,sp,11
-1013f426:	22140413          	addi	s0,s0,545
+1013f426:	2a140413          	addi	s0,s0,673
 1013f42a:	008489b3          	add	s3,s1,s0
 1013f42e:	00498513          	addi	a0,s3,4
 1013f432:	f0ec9097          	auipc	ra,0xf0ec9
@@ -411,7 +411,7 @@ Disassembly of section .text:
 1013f46e:	c54080e7          	jalr	-940(ra) # 10080be <HAL_OTP_Read>
 1013f472:	f569                	bnez	a0,1013f43c <Load_sram_otp+0x60>
 1013f474:	101407b7          	lui	a5,0x10140
-1013f478:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f478:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f47c:	4527c90b          	th.lrw	s2,a5,s2,2
 1013f480:	8626                	mv	a2,s1
 1013f482:	8522                	mv	a0,s0
@@ -464,7 +464,7 @@ Disassembly of section .text:
 1013f4fa:	4785                	li	a5,1
 1013f4fc:	02f99e63          	bne	s3,a5,1013f538 <DestroyKey+0x7a>
 1013f500:	02000413          	li	s0,32
-1013f504:	24600493          	li	s1,582
+1013f504:	2c600493          	li	s1,710
 1013f508:	00848933          	add	s2,s1,s0
 1013f50c:	4605                	li	a2,1
 1013f50e:	00f10593          	addi	a1,sp,15
@@ -478,10 +478,10 @@ Disassembly of section .text:
 1013f526:	f0ecc317          	auipc	t1,0xf0ecc
 1013f52a:	50630067          	jr	1286(t1) # 100ba2c <__riscv_restore_4>
 1013f52e:	02000413          	li	s0,32
-1013f532:	22100493          	li	s1,545
+1013f532:	2a100493          	li	s1,673
 1013f536:	bfc9                	j	1013f508 <DestroyKey+0x4a>
 1013f538:	4441                	li	s0,16
-1013f53a:	26b00493          	li	s1,619
+1013f53a:	2eb00493          	li	s1,747
 1013f53e:	b7e9                	j	1013f508 <DestroyKey+0x4a>
 1013f540:	00f14683          	lbu	a3,15(sp)
 1013f544:	0ff00713          	li	a4,255
@@ -500,7 +500,7 @@ Disassembly of section .text:
 1013f568:	ccc080e7          	jalr	-820(ra) # 1008230 <HAL_OTP_Write>
 1013f56c:	f955                	bnez	a0,1013f520 <DestroyKey+0x62>
 1013f56e:	101407b7          	lui	a5,0x10140
-1013f572:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f572:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f576:	4537c50b          	th.lrw	a0,a5,s3,2
 1013f57a:	e919                	bnez	a0,1013f590 <DestroyKey+0xd2>
 1013f57c:	4781                	li	a5,0
@@ -530,13 +530,13 @@ Disassembly of section .text:
 1013f5b6:	ff058413          	addi	s0,a1,-16
 1013f5ba:	983d                	andi	s0,s0,-17
 1013f5bc:	ec3d                	bnez	s0,1013f63a <trng_derive_key+0x98>
-1013f5be:	2141                	jal	1013fa3e <HAL_TRNG_MSP_Init>
+1013f5be:	2169                	jal	1013fa48 <HAL_TRNG_MSP_Init>
 1013f5c0:	4505                	li	a0,1
-1013f5c2:	2939                	jal	1013f9e0 <send_cmd>
+1013f5c2:	2125                	jal	1013f9ea <send_cmd>
 1013f5c4:	450d                	li	a0,3
-1013f5c6:	2929                	jal	1013f9e0 <send_cmd>
+1013f5c6:	2115                	jal	1013f9ea <send_cmd>
 1013f5c8:	4519                	li	a0,6
-1013f5ca:	2919                	jal	1013f9e0 <send_cmd>
+1013f5ca:	2105                	jal	1013f9ea <send_cmd>
 1013f5cc:	40004737          	lui	a4,0x40004
 1013f5d0:	5354                	lw	a3,36(a4)
 1013f5d2:	451d                	li	a0,7
@@ -548,7 +548,7 @@ Disassembly of section .text:
 1013f5de:	c436                	sw	a3,8(sp)
 1013f5e0:	5b18                	lw	a4,48(a4)
 1013f5e2:	c63a                	sw	a4,12(sp)
-1013f5e4:	2ef5                	jal	1013f9e0 <send_cmd>
+1013f5e4:	2119                	jal	1013f9ea <send_cmd>
 1013f5e6:	4781                	li	a5,0
 1013f5e8:	4741                	li	a4,16
 1013f5ea:	8137c68b          	th.lrbu	a3,a5,s3,0
@@ -558,7 +558,7 @@ Disassembly of section .text:
 1013f5f8:	02000793          	li	a5,32
 1013f5fc:	02f91963          	bne	s2,a5,1013f62e <trng_derive_key+0x8c>
 1013f600:	4519                	li	a0,6
-1013f602:	2ef9                	jal	1013f9e0 <send_cmd>
+1013f602:	26e5                	jal	1013f9ea <send_cmd>
 1013f604:	40004737          	lui	a4,0x40004
 1013f608:	5354                	lw	a3,36(a4)
 1013f60a:	451d                	li	a0,7
@@ -570,7 +570,7 @@ Disassembly of section .text:
 1013f616:	c436                	sw	a3,8(sp)
 1013f618:	5b18                	lw	a4,48(a4)
 1013f61a:	c63a                	sw	a4,12(sp)
-1013f61c:	26d1                	jal	1013f9e0 <send_cmd>
+1013f61c:	26f9                	jal	1013f9ea <send_cmd>
 1013f61e:	47c1                	li	a5,16
 1013f620:	8089c70b          	th.lrbu	a4,s3,s0,0
 1013f624:	0084d70b          	th.srb	a4,s1,s0,0
@@ -597,11 +597,11 @@ Disassembly of section .text:
 1013f65e:	5479                	li	s0,-2
 1013f660:	08f76963          	bltu	a4,a5,1013f6f2 <GetPubKey+0xaa>
 1013f664:	101407b7          	lui	a5,0x10140
-1013f668:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f668:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f66c:	44a7c90b          	th.lrw	s2,a5,a0,2
 1013f670:	02000593          	li	a1,32
 1013f674:	854a                	mv	a0,s2
-1013f676:	2659                	jal	1013f9fc <is_key_empty>
+1013f676:	2e41                	jal	1013fa06 <is_key_empty>
 1013f678:	842a                	mv	s0,a0
 1013f67a:	e151                	bnez	a0,1013f6fe <GetPubKey+0xb6>
 1013f67c:	4601                	li	a2,0
@@ -628,9 +628,9 @@ Disassembly of section .text:
 1013f6c0:	f0ecc097          	auipc	ra,0xf0ecc
 1013f6c4:	454080e7          	jalr	1108(ra) # 100bb14 <memcpy>
 1013f6c8:	8552                	mv	a0,s4
-1013f6ca:	2e91                	jal	1013fa1e <arr_reverse.constprop.0>
+1013f6ca:	2eb9                	jal	1013fa28 <arr_reverse.constprop.0>
 1013f6cc:	854e                	mv	a0,s3
-1013f6ce:	2e81                	jal	1013fa1e <arr_reverse.constprop.0>
+1013f6ce:	2ea9                	jal	1013fa28 <arr_reverse.constprop.0>
 1013f6d0:	02048913          	addi	s2,s1,32
 1013f6d4:	086c                	addi	a1,sp,28
 1013f6d6:	4505                	li	a0,1
@@ -642,9 +642,9 @@ Disassembly of section .text:
 1013f6e2:	f0ec5097          	auipc	ra,0xf0ec5
 1013f6e6:	5e6080e7          	jalr	1510(ra) # 1004cc8 <HAL_OTBN_ECC256_ScalarMult_Polling>
 1013f6ea:	8526                	mv	a0,s1
-1013f6ec:	2e0d                	jal	1013fa1e <arr_reverse.constprop.0>
+1013f6ec:	2e35                	jal	1013fa28 <arr_reverse.constprop.0>
 1013f6ee:	854a                	mv	a0,s2
-1013f6f0:	263d                	jal	1013fa1e <arr_reverse.constprop.0>
+1013f6f0:	2e25                	jal	1013fa28 <arr_reverse.constprop.0>
 1013f6f2:	8522                	mv	a0,s0
 1013f6f4:	6149                	addi	sp,sp,144
 1013f6f6:	f0ecc317          	auipc	t1,0xf0ecc
@@ -659,7 +659,7 @@ Disassembly of section .text:
 1013f70c:	85aa                	mv	a1,a0
 1013f70e:	10140537          	lui	a0,0x10140
 1013f712:	04000613          	li	a2,64
-1013f716:	e3050513          	addi	a0,a0,-464 # 1013fe30 <LOAD_PUBKEY_DATA>
+1013f716:	e3850513          	addi	a0,a0,-456 # 1013fe38 <LOAD_PUBKEY_DATA>
 1013f71a:	f0ecc097          	auipc	ra,0xf0ecc
 1013f71e:	3fa080e7          	jalr	1018(ra) # 100bb14 <memcpy>
 1013f722:	4501                	li	a0,0
@@ -681,20 +681,20 @@ Disassembly of section .text:
 1013f74e:	ffb50713          	addi	a4,a0,-5
 1013f752:	40e7940b          	th.mveqz	s0,a5,a4
 1013f756:	101407b7          	lui	a5,0x10140
-1013f75a:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f75a:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f75e:	44a7c98b          	th.lrw	s3,a5,a0,2
 1013f762:	1101                	addi	sp,sp,-32
 1013f764:	84ae                	mv	s1,a1
 1013f766:	854e                	mv	a0,s3
 1013f768:	85a2                	mv	a1,s0
 1013f76a:	8932                	mv	s2,a2
-1013f76c:	2c41                	jal	1013f9fc <is_key_empty>
+1013f76c:	2c69                	jal	1013fa06 <is_key_empty>
 1013f76e:	5761                	li	a4,-8
 1013f770:	ed05                	bnez	a0,1013f7a8 <ExportKey+0x78>
 1013f772:	10140a37          	lui	s4,0x10140
 1013f776:	04000593          	li	a1,64
-1013f77a:	e30a0513          	addi	a0,s4,-464 # 1013fe30 <LOAD_PUBKEY_DATA>
-1013f77e:	2cbd                	jal	1013f9fc <is_key_empty>
+1013f77a:	e38a0513          	addi	a0,s4,-456 # 1013fe38 <LOAD_PUBKEY_DATA>
+1013f77e:	2461                	jal	1013fa06 <is_key_empty>
 1013f780:	5761                	li	a4,-8
 1013f782:	e11d                	bnez	a0,1013f7a8 <ExportKey+0x78>
 1013f784:	85d6                	mv	a1,s5
@@ -702,7 +702,7 @@ Disassembly of section .text:
 1013f788:	3d29                	jal	1013f5a2 <trng_derive_key>
 1013f78a:	577d                	li	a4,-1
 1013f78c:	ed11                	bnez	a0,1013f7a8 <ExportKey+0x78>
-1013f78e:	e30a0713          	addi	a4,s4,-464
+1013f78e:	e38a0713          	addi	a4,s4,-456
 1013f792:	87ca                	mv	a5,s2
 1013f794:	868a                	mv	a3,sp
 1013f796:	8622                	mv	a2,s0
@@ -734,7 +734,7 @@ Disassembly of section .text:
 1013f7dc:	4785                	li	a5,1
 1013f7de:	feb7e8e3          	bltu	a5,a1,1013f7ce <ImportKey+0x14>
 1013f7e2:	10140937          	lui	s2,0x10140
-1013f7e6:	e1490913          	addi	s2,s2,-492 # 1013fe14 <key_data_table>
+1013f7e6:	e1c90913          	addi	s2,s2,-484 # 1013fe1c <key_data_table>
 1013f7ea:	44b94b0b          	th.lrw	s6,s2,a1,2
 1013f7ee:	02000713          	li	a4,32
 1013f7f2:	ffb50793          	addi	a5,a0,-5
@@ -745,7 +745,7 @@ Disassembly of section .text:
 1013f7fe:	8a32                	mv	s4,a2
 1013f800:	8ab6                	mv	s5,a3
 1013f802:	42f7198b          	th.mvnez	s3,a4,a5
-1013f806:	2add                	jal	1013f9fc <is_key_empty>
+1013f806:	2401                	jal	1013fa06 <is_key_empty>
 1013f808:	842a                	mv	s0,a0
 1013f80a:	ed05                	bnez	a0,1013f842 <ImportKey+0x88>
 1013f80c:	02000613          	li	a2,32
@@ -789,12 +789,12 @@ Disassembly of section .text:
 1013f86c:	c432                	sw	a2,8(sp)
 1013f86e:	ca0d                	beqz	a2,1013f8a0 <SM2_decrypt+0x5a>
 1013f870:	101407b7          	lui	a5,0x10140
-1013f874:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f874:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f878:	44a7c68b          	th.lrw	a3,a5,a0,2
 1013f87c:	02000593          	li	a1,32
 1013f880:	8536                	mv	a0,a3
 1013f882:	c236                	sw	a3,4(sp)
-1013f884:	2aa5                	jal	1013f9fc <is_key_empty>
+1013f884:	2249                	jal	1013fa06 <is_key_empty>
 1013f886:	5861                	li	a6,-8
 1013f888:	ed01                	bnez	a0,1013f8a0 <SM2_decrypt+0x5a>
 1013f88a:	4732                	lw	a4,12(sp)
@@ -827,11 +827,11 @@ Disassembly of section .text:
 1013f8ce:	c436                	sw	a3,8(sp)
 1013f8d0:	c69d                	beqz	a3,1013f8fe <SM2_sign+0x52>
 1013f8d2:	101407b7          	lui	a5,0x10140
-1013f8d6:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
+1013f8d6:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
 1013f8da:	44a7c48b          	th.lrw	s1,a5,a0,2
 1013f8de:	02000593          	li	a1,32
 1013f8e2:	8526                	mv	a0,s1
-1013f8e4:	2a21                	jal	1013f9fc <is_key_empty>
+1013f8e4:	220d                	jal	1013fa06 <is_key_empty>
 1013f8e6:	57e1                	li	a5,-8
 1013f8e8:	e919                	bnez	a0,1013f8fe <SM2_sign+0x52>
 1013f8ea:	46a2                	lw	a3,8(sp)
@@ -869,471 +869,473 @@ Disassembly of section .text:
 1013f93e:	8082                	ret
 
 1013f940 <SM4_enc_dec_process>:
-1013f940:	f0ecc317          	auipc	t1,0xf0ecc
-1013f944:	0d2302e7          	jalr	t0,210(t1) # 100ba12 <__riscv_save_0>
-1013f948:	1141                	addi	sp,sp,-16
-1013f94a:	843a                	mv	s0,a4
+1013f940:	c355                	beqz	a4,1013f9e4 <SM4_enc_dec_process+0xa4>
+1013f942:	f0ecc317          	auipc	t1,0xf0ecc
+1013f946:	0b6302e7          	jalr	t0,182(t1) # 100b9f8 <__riscv_save_4>
+1013f94a:	89be                	mv	s3,a5
 1013f94c:	58f9                	li	a7,-2
-1013f94e:	c73d                	beqz	a4,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f950:	832e                	mv	t1,a1
-1013f952:	58f9                	li	a7,-2
-1013f954:	85b6                	mv	a1,a3
-1013f956:	86be                	mv	a3,a5
-1013f958:	c3b5                	beqz	a5,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f95a:	8742                	mv	a4,a6
-1013f95c:	06080063          	beqz	a6,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f960:	00f87793          	andi	a5,a6,15
-1013f964:	efa1                	bnez	a5,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f966:	4789                	li	a5,2
-1013f968:	84b2                	mv	s1,a2
-1013f96a:	00f50563          	beq	a0,a5,1013f974 <SM4_enc_dec_process+0x34>
-1013f96e:	4795                	li	a5,5
-1013f970:	04f51663          	bne	a0,a5,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f974:	4785                	li	a5,1
-1013f976:	00f31463          	bne	t1,a5,1013f97e <SM4_enc_dec_process+0x3e>
-1013f97a:	58f9                	li	a7,-2
-1013f97c:	c1a1                	beqz	a1,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f97e:	101407b7          	lui	a5,0x10140
-1013f982:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
-1013f986:	44a7c78b          	th.lrw	a5,a5,a0,2
-1013f98a:	58f9                	li	a7,-2
-1013f98c:	cb85                	beqz	a5,1013f9bc <SM4_enc_dec_process+0x7c>
-1013f98e:	04031263          	bnez	t1,1013f9d2 <SM4_enc_dec_process+0x92>
-1013f992:	853e                	mv	a0,a5
-1013f994:	c63a                	sw	a4,12(sp)
-1013f996:	c436                	sw	a3,8(sp)
-1013f998:	f0ec6097          	auipc	ra,0xf0ec6
-1013f99c:	b36080e7          	jalr	-1226(ra) # 10054ce <HAL_SM4_KeyExpansion>
-1013f9a0:	46a2                	lw	a3,8(sp)
-1013f9a2:	4732                	lw	a4,12(sp)
-1013f9a4:	8522                	mv	a0,s0
-1013f9a6:	85b6                	mv	a1,a3
-1013f9a8:	863a                	mv	a2,a4
-1013f9aa:	ec99                	bnez	s1,1013f9c8 <SM4_enc_dec_process+0x88>
-1013f9ac:	f0ec6097          	auipc	ra,0xf0ec6
-1013f9b0:	b40080e7          	jalr	-1216(ra) # 10054ec <HAL_SM4_Encrypt>
-1013f9b4:	00a03533          	snez	a0,a0
-1013f9b8:	40a008b3          	neg	a7,a0
-1013f9bc:	8546                	mv	a0,a7
-1013f9be:	0141                	addi	sp,sp,16
-1013f9c0:	f0ecc317          	auipc	t1,0xf0ecc
-1013f9c4:	07630067          	jr	118(t1) # 100ba36 <__riscv_restore_0>
-1013f9c8:	f0ec6097          	auipc	ra,0xf0ec6
-1013f9cc:	b46080e7          	jalr	-1210(ra) # 100550e <HAL_SM4_Decrypt>
-1013f9d0:	b7d5                	j	1013f9b4 <SM4_enc_dec_process+0x74>
-1013f9d2:	8622                	mv	a2,s0
-1013f9d4:	e481                	bnez	s1,1013f9dc <SM4_enc_dec_process+0x9c>
-1013f9d6:	2ae1                	jal	1013fbae <SM4_CBC_encrypt_process>
-1013f9d8:	88aa                	mv	a7,a0
-1013f9da:	b7cd                	j	1013f9bc <SM4_enc_dec_process+0x7c>
-1013f9dc:	2c69                	jal	1013fc76 <SM4_CBC_decrypt_process>
-1013f9de:	bfed                	j	1013f9d8 <SM4_enc_dec_process+0x98>
+1013f94e:	c7ad                	beqz	a5,1013f9b8 <SM4_enc_dec_process+0x78>
+1013f950:	84c2                	mv	s1,a6
+1013f952:	06080363          	beqz	a6,1013f9b8 <SM4_enc_dec_process+0x78>
+1013f956:	00f87793          	andi	a5,a6,15
+1013f95a:	efb9                	bnez	a5,1013f9b8 <SM4_enc_dec_process+0x78>
+1013f95c:	4789                	li	a5,2
+1013f95e:	842e                	mv	s0,a1
+1013f960:	8a32                	mv	s4,a2
+1013f962:	85b6                	mv	a1,a3
+1013f964:	893a                	mv	s2,a4
+1013f966:	00f50563          	beq	a0,a5,1013f970 <SM4_enc_dec_process+0x30>
+1013f96a:	4795                	li	a5,5
+1013f96c:	04f51663          	bne	a0,a5,1013f9b8 <SM4_enc_dec_process+0x78>
+1013f970:	4785                	li	a5,1
+1013f972:	00f41463          	bne	s0,a5,1013f97a <SM4_enc_dec_process+0x3a>
+1013f976:	58f9                	li	a7,-2
+1013f978:	c1a1                	beqz	a1,1013f9b8 <SM4_enc_dec_process+0x78>
+1013f97a:	101407b7          	lui	a5,0x10140
+1013f97e:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
+1013f982:	44a7c78b          	th.lrw	a5,a5,a0,2
+1013f986:	58f9                	li	a7,-2
+1013f988:	cb85                	beqz	a5,1013f9b8 <SM4_enc_dec_process+0x78>
+1013f98a:	04041363          	bnez	s0,1013f9d0 <SM4_enc_dec_process+0x90>
+1013f98e:	853e                	mv	a0,a5
+1013f990:	f0ec6097          	auipc	ra,0xf0ec6
+1013f994:	b3e080e7          	jalr	-1218(ra) # 10054ce <HAL_SM4_KeyExpansion>
+1013f998:	00890533          	add	a0,s2,s0
+1013f99c:	008985b3          	add	a1,s3,s0
+1013f9a0:	4641                	li	a2,16
+1013f9a2:	020a1263          	bnez	s4,1013f9c6 <SM4_enc_dec_process+0x86>
+1013f9a6:	f0ec6097          	auipc	ra,0xf0ec6
+1013f9aa:	b46080e7          	jalr	-1210(ra) # 10054ec <HAL_SM4_Encrypt>
+1013f9ae:	e911                	bnez	a0,1013f9c2 <SM4_enc_dec_process+0x82>
+1013f9b0:	0441                	addi	s0,s0,16
+1013f9b2:	fe9463e3          	bltu	s0,s1,1013f998 <SM4_enc_dec_process+0x58>
+1013f9b6:	4881                	li	a7,0
+1013f9b8:	8546                	mv	a0,a7
+1013f9ba:	f0ecc317          	auipc	t1,0xf0ecc
+1013f9be:	07230067          	jr	114(t1) # 100ba2c <__riscv_restore_4>
+1013f9c2:	58fd                	li	a7,-1
+1013f9c4:	bfd5                	j	1013f9b8 <SM4_enc_dec_process+0x78>
+1013f9c6:	f0ec6097          	auipc	ra,0xf0ec6
+1013f9ca:	b48080e7          	jalr	-1208(ra) # 100550e <HAL_SM4_Decrypt>
+1013f9ce:	b7c5                	j	1013f9ae <SM4_enc_dec_process+0x6e>
+1013f9d0:	8726                	mv	a4,s1
+1013f9d2:	86ce                	mv	a3,s3
+1013f9d4:	864a                	mv	a2,s2
+1013f9d6:	000a1563          	bnez	s4,1013f9e0 <SM4_enc_dec_process+0xa0>
+1013f9da:	2af9                	jal	1013fbb8 <SM4_CBC_encrypt_process>
+1013f9dc:	88aa                	mv	a7,a0
+1013f9de:	bfe9                	j	1013f9b8 <SM4_enc_dec_process+0x78>
+1013f9e0:	2445                	jal	1013fc80 <SM4_CBC_decrypt_process>
+1013f9e2:	bfed                	j	1013f9dc <SM4_enc_dec_process+0x9c>
+1013f9e4:	58f9                	li	a7,-2
+1013f9e6:	8546                	mv	a0,a7
+1013f9e8:	8082                	ret
 
-1013f9e0 <send_cmd>:
-1013f9e0:	400047b7          	lui	a5,0x40004
-1013f9e4:	47d8                	lw	a4,12(a5)
-1013f9e6:	fe074fe3          	bltz	a4,1013f9e4 <send_cmd+0x4>
-1013f9ea:	c388                	sw	a0,0(a5)
-1013f9ec:	40004737          	lui	a4,0x40004
-1013f9f0:	4b5c                	lw	a5,20(a4)
-1013f9f2:	8bc1                	andi	a5,a5,16
-1013f9f4:	dff5                	beqz	a5,1013f9f0 <send_cmd+0x10>
-1013f9f6:	47c1                	li	a5,16
-1013f9f8:	cb5c                	sw	a5,20(a4)
-1013f9fa:	8082                	ret
+1013f9ea <send_cmd>:
+1013f9ea:	400047b7          	lui	a5,0x40004
+1013f9ee:	47d8                	lw	a4,12(a5)
+1013f9f0:	fe074fe3          	bltz	a4,1013f9ee <send_cmd+0x4>
+1013f9f4:	c388                	sw	a0,0(a5)
+1013f9f6:	40004737          	lui	a4,0x40004
+1013f9fa:	4b5c                	lw	a5,20(a4)
+1013f9fc:	8bc1                	andi	a5,a5,16
+1013f9fe:	dff5                	beqz	a5,1013f9fa <send_cmd+0x10>
+1013fa00:	47c1                	li	a5,16
+1013fa02:	cb5c                	sw	a5,20(a4)
+1013fa04:	8082                	ret
 
-1013f9fc <is_key_empty>:
-1013f9fc:	4701                	li	a4,0
-1013f9fe:	0fd00693          	li	a3,253
-1013fa02:	80e5478b          	th.lrbu	a5,a0,a4,0
-1013fa06:	17fd                	addi	a5,a5,-1 # 40003fff <_bss_end+0x2fec40ef>
-1013fa08:	0ff7f793          	zext.b	a5,a5
-1013fa0c:	00f6f763          	bgeu	a3,a5,1013fa1a <is_key_empty+0x1e>
-1013fa10:	0705                	addi	a4,a4,1 # 40004001 <_bss_end+0x2fec40f1>
-1013fa12:	fee598e3          	bne	a1,a4,1013fa02 <is_key_empty+0x6>
-1013fa16:	5561                	li	a0,-8
-1013fa18:	8082                	ret
-1013fa1a:	4501                	li	a0,0
-1013fa1c:	8082                	ret
+1013fa06 <is_key_empty>:
+1013fa06:	4701                	li	a4,0
+1013fa08:	0fd00693          	li	a3,253
+1013fa0c:	80e5478b          	th.lrbu	a5,a0,a4,0
+1013fa10:	17fd                	addi	a5,a5,-1 # 40003fff <_bss_end+0x2fec40e7>
+1013fa12:	0ff7f793          	zext.b	a5,a5
+1013fa16:	00f6f763          	bgeu	a3,a5,1013fa24 <is_key_empty+0x1e>
+1013fa1a:	0705                	addi	a4,a4,1 # 40004001 <_bss_end+0x2fec40e9>
+1013fa1c:	fee598e3          	bne	a1,a4,1013fa0c <is_key_empty+0x6>
+1013fa20:	5561                	li	a0,-8
+1013fa22:	8082                	ret
+1013fa24:	4501                	li	a0,0
+1013fa26:	8082                	ret
 
-1013fa1e <arr_reverse.constprop.0>:
-1013fa1e:	01f50713          	addi	a4,a0,31
-1013fa22:	4781                	li	a5,0
-1013fa24:	46c1                	li	a3,16
-1013fa26:	00074583          	lbu	a1,0(a4)
-1013fa2a:	80f5460b          	th.lrbu	a2,a0,a5,0
-1013fa2e:	00f5558b          	th.srb	a1,a0,a5,0
-1013fa32:	19f7560b          	th.sbia	a2,(a4),-1,0
-1013fa36:	0785                	addi	a5,a5,1
-1013fa38:	fed797e3          	bne	a5,a3,1013fa26 <arr_reverse.constprop.0+0x8>
-1013fa3c:	8082                	ret
+1013fa28 <arr_reverse.constprop.0>:
+1013fa28:	01f50713          	addi	a4,a0,31
+1013fa2c:	4781                	li	a5,0
+1013fa2e:	46c1                	li	a3,16
+1013fa30:	00074583          	lbu	a1,0(a4)
+1013fa34:	80f5460b          	th.lrbu	a2,a0,a5,0
+1013fa38:	00f5558b          	th.srb	a1,a0,a5,0
+1013fa3c:	19f7560b          	th.sbia	a2,(a4),-1,0
+1013fa40:	0785                	addi	a5,a5,1
+1013fa42:	fed797e3          	bne	a5,a3,1013fa30 <arr_reverse.constprop.0+0x8>
+1013fa46:	8082                	ret
 
-1013fa3e <HAL_TRNG_MSP_Init>:
-1013fa3e:	400227b7          	lui	a5,0x40022
-1013fa42:	80000737          	lui	a4,0x80000
-1013fa46:	cbd8                	sw	a4,20(a5)
-1013fa48:	cfd8                	sw	a4,28(a5)
-1013fa4a:	40000737          	lui	a4,0x40000
-1013fa4e:	cfd8                	sw	a4,28(a5)
+1013fa48 <HAL_TRNG_MSP_Init>:
+1013fa48:	400227b7          	lui	a5,0x40022
+1013fa4c:	80000737          	lui	a4,0x80000
 1013fa50:	cbd8                	sw	a4,20(a5)
-1013fa52:	8082                	ret
+1013fa52:	cfd8                	sw	a4,28(a5)
+1013fa54:	40000737          	lui	a4,0x40000
+1013fa58:	cfd8                	sw	a4,28(a5)
+1013fa5a:	cbd8                	sw	a4,20(a5)
+1013fa5c:	8082                	ret
 
-1013fa54 <strlen>:
-1013fa54:	87aa                	mv	a5,a0
-1013fa56:	4501                	li	a0,0
-1013fa58:	80a7c70b          	th.lrbu	a4,a5,a0,0
-1013fa5c:	e311                	bnez	a4,1013fa60 <strlen+0xc>
-1013fa5e:	8082                	ret
-1013fa60:	0505                	addi	a0,a0,1
-1013fa62:	bfdd                	j	1013fa58 <strlen+0x4>
+1013fa5e <strlen>:
+1013fa5e:	87aa                	mv	a5,a0
+1013fa60:	4501                	li	a0,0
+1013fa62:	80a7c70b          	th.lrbu	a4,a5,a0,0
+1013fa66:	e311                	bnez	a4,1013fa6a <strlen+0xc>
+1013fa68:	8082                	ret
+1013fa6a:	0505                	addi	a0,a0,1
+1013fa6c:	bfdd                	j	1013fa62 <strlen+0x4>
 
-1013fa64 <Password_op>:
-1013fa64:	f0ecc317          	auipc	t1,0xf0ecc
-1013fa68:	f94302e7          	jalr	t0,-108(t1) # 100b9f8 <__riscv_save_4>
-1013fa6c:	715d                	addi	sp,sp,-80
-1013fa6e:	842a                	mv	s0,a0
-1013fa70:	02000613          	li	a2,32
-1013fa74:	892e                	mv	s2,a1
-1013fa76:	0808                	addi	a0,sp,16
-1013fa78:	4581                	li	a1,0
-1013fa7a:	f0ecc097          	auipc	ra,0xf0ecc
-1013fa7e:	0b2080e7          	jalr	178(ra) # 100bb2c <memset>
-1013fa82:	02000613          	li	a2,32
-1013fa86:	4581                	li	a1,0
-1013fa88:	1808                	addi	a0,sp,48
-1013fa8a:	f0ecc097          	auipc	ra,0xf0ecc
-1013fa8e:	0a2080e7          	jalr	162(ra) # 100bb2c <memset>
-1013fa92:	59fd                	li	s3,-1
-1013fa94:	8522                	mv	a0,s0
-1013fa96:	01310723          	sb	s3,14(sp)
-1013fa9a:	3f6d                	jal	1013fa54 <strlen>
-1013fa9c:	ff450713          	addi	a4,a0,-12
-1013faa0:	47d1                	li	a5,20
-1013faa2:	0ae7ec63          	bltu	a5,a4,1013fb5a <Password_op+0xf6>
-1013faa6:	84aa                	mv	s1,a0
-1013faa8:	4605                	li	a2,1
-1013faaa:	00e10593          	addi	a1,sp,14
-1013faae:	22000513          	li	a0,544
-1013fab2:	f0ec8097          	auipc	ra,0xf0ec8
-1013fab6:	60c080e7          	jalr	1548(ra) # 10080be <HAL_OTP_Read>
-1013faba:	c901                	beqz	a0,1013faca <Password_op+0x66>
-1013fabc:	57fd                	li	a5,-1
-1013fabe:	853e                	mv	a0,a5
-1013fac0:	6161                	addi	sp,sp,80
-1013fac2:	f0ecc317          	auipc	t1,0xf0ecc
-1013fac6:	f6a30067          	jr	-150(t1) # 100ba2c <__riscv_restore_4>
-1013faca:	0810                	addi	a2,sp,16
-1013facc:	85a6                	mv	a1,s1
-1013face:	8522                	mv	a0,s0
-1013fad0:	fc4ff0ef          	jal	1013f294 <SM3_cal>
-1013fad4:	00e14703          	lbu	a4,14(sp)
-1013fad8:	04091463          	bnez	s2,1013fb20 <Password_op+0xbc>
-1013fadc:	57e5                	li	a5,-7
-1013fade:	d365                	beqz	a4,1013fabe <Password_op+0x5a>
-1013fae0:	0ff00693          	li	a3,255
-1013fae4:	57e9                	li	a5,-6
-1013fae6:	fcd71ce3          	bne	a4,a3,1013fabe <Password_op+0x5a>
-1013faea:	02000613          	li	a2,32
-1013faee:	080c                	addi	a1,sp,16
-1013faf0:	20000513          	li	a0,512
-1013faf4:	000107a3          	sb	zero,15(sp)
-1013faf8:	f0ec8097          	auipc	ra,0xf0ec8
-1013fafc:	738080e7          	jalr	1848(ra) # 1008230 <HAL_OTP_Write>
-1013fb00:	87ce                	mv	a5,s3
-1013fb02:	fd55                	bnez	a0,1013fabe <Password_op+0x5a>
-1013fb04:	4605                	li	a2,1
-1013fb06:	00f10593          	addi	a1,sp,15
-1013fb0a:	22000513          	li	a0,544
-1013fb0e:	f0ec8097          	auipc	ra,0xf0ec8
-1013fb12:	722080e7          	jalr	1826(ra) # 1008230 <HAL_OTP_Write>
-1013fb16:	00a037b3          	snez	a5,a0
-1013fb1a:	40f007b3          	neg	a5,a5
-1013fb1e:	b745                	j	1013fabe <Password_op+0x5a>
-1013fb20:	0ff00693          	li	a3,255
-1013fb24:	57e1                	li	a5,-8
-1013fb26:	f8d70ce3          	beq	a4,a3,1013fabe <Password_op+0x5a>
-1013fb2a:	57e9                	li	a5,-6
-1013fb2c:	fb49                	bnez	a4,1013fabe <Password_op+0x5a>
-1013fb2e:	02000613          	li	a2,32
-1013fb32:	180c                	addi	a1,sp,48
-1013fb34:	20000513          	li	a0,512
-1013fb38:	f0ec8097          	auipc	ra,0xf0ec8
-1013fb3c:	586080e7          	jalr	1414(ra) # 10080be <HAL_OTP_Read>
-1013fb40:	fd35                	bnez	a0,1013fabc <Password_op+0x58>
-1013fb42:	02000613          	li	a2,32
-1013fb46:	180c                	addi	a1,sp,48
-1013fb48:	0808                	addi	a0,sp,16
-1013fb4a:	f0ecc097          	auipc	ra,0xf0ecc
-1013fb4e:	fa4080e7          	jalr	-92(ra) # 100baee <memcmp>
-1013fb52:	57f5                	li	a5,-3
-1013fb54:	40a0178b          	th.mveqz	a5,zero,a0
-1013fb58:	b79d                	j	1013fabe <Password_op+0x5a>
-1013fb5a:	57f9                	li	a5,-2
-1013fb5c:	b78d                	j	1013fabe <Password_op+0x5a>
+1013fa6e <Password_op>:
+1013fa6e:	f0ecc317          	auipc	t1,0xf0ecc
+1013fa72:	f8a302e7          	jalr	t0,-118(t1) # 100b9f8 <__riscv_save_4>
+1013fa76:	715d                	addi	sp,sp,-80
+1013fa78:	842a                	mv	s0,a0
+1013fa7a:	02000613          	li	a2,32
+1013fa7e:	892e                	mv	s2,a1
+1013fa80:	0808                	addi	a0,sp,16
+1013fa82:	4581                	li	a1,0
+1013fa84:	f0ecc097          	auipc	ra,0xf0ecc
+1013fa88:	0a8080e7          	jalr	168(ra) # 100bb2c <memset>
+1013fa8c:	02000613          	li	a2,32
+1013fa90:	4581                	li	a1,0
+1013fa92:	1808                	addi	a0,sp,48
+1013fa94:	f0ecc097          	auipc	ra,0xf0ecc
+1013fa98:	098080e7          	jalr	152(ra) # 100bb2c <memset>
+1013fa9c:	59fd                	li	s3,-1
+1013fa9e:	8522                	mv	a0,s0
+1013faa0:	01310723          	sb	s3,14(sp)
+1013faa4:	3f6d                	jal	1013fa5e <strlen>
+1013faa6:	ff450713          	addi	a4,a0,-12
+1013faaa:	47d1                	li	a5,20
+1013faac:	0ae7ec63          	bltu	a5,a4,1013fb64 <Password_op+0xf6>
+1013fab0:	84aa                	mv	s1,a0
+1013fab2:	4605                	li	a2,1
+1013fab4:	00e10593          	addi	a1,sp,14
+1013fab8:	2a000513          	li	a0,672
+1013fabc:	f0ec8097          	auipc	ra,0xf0ec8
+1013fac0:	602080e7          	jalr	1538(ra) # 10080be <HAL_OTP_Read>
+1013fac4:	c901                	beqz	a0,1013fad4 <Password_op+0x66>
+1013fac6:	57fd                	li	a5,-1
+1013fac8:	853e                	mv	a0,a5
+1013faca:	6161                	addi	sp,sp,80
+1013facc:	f0ecc317          	auipc	t1,0xf0ecc
+1013fad0:	f6030067          	jr	-160(t1) # 100ba2c <__riscv_restore_4>
+1013fad4:	0810                	addi	a2,sp,16
+1013fad6:	85a6                	mv	a1,s1
+1013fad8:	8522                	mv	a0,s0
+1013fada:	fbaff0ef          	jal	1013f294 <SM3_cal>
+1013fade:	00e14703          	lbu	a4,14(sp)
+1013fae2:	04091463          	bnez	s2,1013fb2a <Password_op+0xbc>
+1013fae6:	57e5                	li	a5,-7
+1013fae8:	d365                	beqz	a4,1013fac8 <Password_op+0x5a>
+1013faea:	0ff00693          	li	a3,255
+1013faee:	57e9                	li	a5,-6
+1013faf0:	fcd71ce3          	bne	a4,a3,1013fac8 <Password_op+0x5a>
+1013faf4:	02000613          	li	a2,32
+1013faf8:	080c                	addi	a1,sp,16
+1013fafa:	28000513          	li	a0,640
+1013fafe:	000107a3          	sb	zero,15(sp)
+1013fb02:	f0ec8097          	auipc	ra,0xf0ec8
+1013fb06:	72e080e7          	jalr	1838(ra) # 1008230 <HAL_OTP_Write>
+1013fb0a:	87ce                	mv	a5,s3
+1013fb0c:	fd55                	bnez	a0,1013fac8 <Password_op+0x5a>
+1013fb0e:	4605                	li	a2,1
+1013fb10:	00f10593          	addi	a1,sp,15
+1013fb14:	2a000513          	li	a0,672
+1013fb18:	f0ec8097          	auipc	ra,0xf0ec8
+1013fb1c:	718080e7          	jalr	1816(ra) # 1008230 <HAL_OTP_Write>
+1013fb20:	00a037b3          	snez	a5,a0
+1013fb24:	40f007b3          	neg	a5,a5
+1013fb28:	b745                	j	1013fac8 <Password_op+0x5a>
+1013fb2a:	0ff00693          	li	a3,255
+1013fb2e:	57e1                	li	a5,-8
+1013fb30:	f8d70ce3          	beq	a4,a3,1013fac8 <Password_op+0x5a>
+1013fb34:	57e9                	li	a5,-6
+1013fb36:	fb49                	bnez	a4,1013fac8 <Password_op+0x5a>
+1013fb38:	02000613          	li	a2,32
+1013fb3c:	180c                	addi	a1,sp,48
+1013fb3e:	28000513          	li	a0,640
+1013fb42:	f0ec8097          	auipc	ra,0xf0ec8
+1013fb46:	57c080e7          	jalr	1404(ra) # 10080be <HAL_OTP_Read>
+1013fb4a:	fd35                	bnez	a0,1013fac6 <Password_op+0x58>
+1013fb4c:	02000613          	li	a2,32
+1013fb50:	180c                	addi	a1,sp,48
+1013fb52:	0808                	addi	a0,sp,16
+1013fb54:	f0ecc097          	auipc	ra,0xf0ecc
+1013fb58:	f9a080e7          	jalr	-102(ra) # 100baee <memcmp>
+1013fb5c:	57f5                	li	a5,-3
+1013fb5e:	40a0178b          	th.mveqz	a5,zero,a0
+1013fb62:	b79d                	j	1013fac8 <Password_op+0x5a>
+1013fb64:	57f9                	li	a5,-2
+1013fb66:	b78d                	j	1013fac8 <Password_op+0x5a>
 
-1013fb5e <SM2_encrypt>:
-1013fb5e:	872a                	mv	a4,a0
-1013fb60:	c905                	beqz	a0,1013fb90 <SM2_encrypt+0x32>
-1013fb62:	852e                	mv	a0,a1
-1013fb64:	58f9                	li	a7,-2
-1013fb66:	c595                	beqz	a1,1013fb92 <SM2_encrypt+0x34>
-1013fb68:	85b6                	mv	a1,a3
-1013fb6a:	c685                	beqz	a3,1013fb92 <SM2_encrypt+0x34>
-1013fb6c:	86be                	mv	a3,a5
-1013fb6e:	c395                	beqz	a5,1013fb92 <SM2_encrypt+0x34>
-1013fb70:	f0ecc317          	auipc	t1,0xf0ecc
-1013fb74:	ea2302e7          	jalr	t0,-350(t1) # 100ba12 <__riscv_save_0>
-1013fb78:	87c2                	mv	a5,a6
-1013fb7a:	f0eca097          	auipc	ra,0xf0eca
-1013fb7e:	2b6080e7          	jalr	694(ra) # 1009e30 <boot_sm2_encrypt>
-1013fb82:	fff50893          	addi	a7,a0,-1
-1013fb86:	8546                	mv	a0,a7
-1013fb88:	f0ecc317          	auipc	t1,0xf0ecc
-1013fb8c:	eae30067          	jr	-338(t1) # 100ba36 <__riscv_restore_0>
-1013fb90:	58f9                	li	a7,-2
-1013fb92:	8546                	mv	a0,a7
-1013fb94:	8082                	ret
+1013fb68 <SM2_encrypt>:
+1013fb68:	872a                	mv	a4,a0
+1013fb6a:	c905                	beqz	a0,1013fb9a <SM2_encrypt+0x32>
+1013fb6c:	852e                	mv	a0,a1
+1013fb6e:	58f9                	li	a7,-2
+1013fb70:	c595                	beqz	a1,1013fb9c <SM2_encrypt+0x34>
+1013fb72:	85b6                	mv	a1,a3
+1013fb74:	c685                	beqz	a3,1013fb9c <SM2_encrypt+0x34>
+1013fb76:	86be                	mv	a3,a5
+1013fb78:	c395                	beqz	a5,1013fb9c <SM2_encrypt+0x34>
+1013fb7a:	f0ecc317          	auipc	t1,0xf0ecc
+1013fb7e:	e98302e7          	jalr	t0,-360(t1) # 100ba12 <__riscv_save_0>
+1013fb82:	87c2                	mv	a5,a6
+1013fb84:	f0eca097          	auipc	ra,0xf0eca
+1013fb88:	2ac080e7          	jalr	684(ra) # 1009e30 <boot_sm2_encrypt>
+1013fb8c:	fff50893          	addi	a7,a0,-1
+1013fb90:	8546                	mv	a0,a7
+1013fb92:	f0ecc317          	auipc	t1,0xf0ecc
+1013fb96:	ea430067          	jr	-348(t1) # 100ba36 <__riscv_restore_0>
+1013fb9a:	58f9                	li	a7,-2
+1013fb9c:	8546                	mv	a0,a7
+1013fb9e:	8082                	ret
 
-1013fb96 <SM3_init>:
-1013fb96:	f0ec4317          	auipc	t1,0xf0ec4
-1013fb9a:	c0030067          	jr	-1024(t1) # 1003796 <HAL_OTBN_SM3_Init>
+1013fba0 <SM3_init>:
+1013fba0:	f0ec4317          	auipc	t1,0xf0ec4
+1013fba4:	bf630067          	jr	-1034(t1) # 1003796 <HAL_OTBN_SM3_Init>
 
-1013fb9e <SM3_update>:
-1013fb9e:	f0ec4317          	auipc	t1,0xf0ec4
-1013fba2:	c4c30067          	jr	-948(t1) # 10037ea <HAL_OTBN_SM3_Update>
+1013fba8 <SM3_update>:
+1013fba8:	f0ec4317          	auipc	t1,0xf0ec4
+1013fbac:	c4230067          	jr	-958(t1) # 10037ea <HAL_OTBN_SM3_Update>
 
-1013fba6 <SM3_final>:
-1013fba6:	f0ec4317          	auipc	t1,0xf0ec4
-1013fbaa:	ce830067          	jr	-792(t1) # 100388e <HAL_OTBN_SM3_Final>
+1013fbb0 <SM3_final>:
+1013fbb0:	f0ec4317          	auipc	t1,0xf0ec4
+1013fbb4:	cde30067          	jr	-802(t1) # 100388e <HAL_OTBN_SM3_Final>
 
-1013fbae <SM4_CBC_encrypt_process>:
-1013fbae:	f0ecc317          	auipc	t1,0xf0ecc
-1013fbb2:	e4a302e7          	jalr	t0,-438(t1) # 100b9f8 <__riscv_save_4>
-1013fbb6:	7179                	addi	sp,sp,-48
-1013fbb8:	5479                	li	s0,-2
-1013fbba:	c5d5                	beqz	a1,1013fc66 <SM4_CBC_encrypt_process+0xb8>
-1013fbbc:	8a32                	mv	s4,a2
-1013fbbe:	5479                	li	s0,-2
-1013fbc0:	c25d                	beqz	a2,1013fc66 <SM4_CBC_encrypt_process+0xb8>
-1013fbc2:	89b6                	mv	s3,a3
-1013fbc4:	c2cd                	beqz	a3,1013fc66 <SM4_CBC_encrypt_process+0xb8>
-1013fbc6:	893a                	mv	s2,a4
-1013fbc8:	cf59                	beqz	a4,1013fc66 <SM4_CBC_encrypt_process+0xb8>
-1013fbca:	00f77493          	andi	s1,a4,15
-1013fbce:	ecc1                	bnez	s1,1013fc66 <SM4_CBC_encrypt_process+0xb8>
-1013fbd0:	4789                	li	a5,2
-1013fbd2:	8aae                	mv	s5,a1
-1013fbd4:	00f50563          	beq	a0,a5,1013fbde <SM4_CBC_encrypt_process+0x30>
-1013fbd8:	4795                	li	a5,5
-1013fbda:	08f51663          	bne	a0,a5,1013fc66 <SM4_CBC_encrypt_process+0xb8>
-1013fbde:	101407b7          	lui	a5,0x10140
-1013fbe2:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
-1013fbe6:	44a7cb0b          	th.lrw	s6,a5,a0,2
-1013fbea:	45c1                	li	a1,16
-1013fbec:	855a                	mv	a0,s6
-1013fbee:	3539                	jal	1013f9fc <is_key_empty>
-1013fbf0:	842a                	mv	s0,a0
-1013fbf2:	e141                	bnez	a0,1013fc72 <SM4_CBC_encrypt_process+0xc4>
-1013fbf4:	855a                	mv	a0,s6
-1013fbf6:	f0ec6097          	auipc	ra,0xf0ec6
-1013fbfa:	8d8080e7          	jalr	-1832(ra) # 10054ce <HAL_SM4_KeyExpansion>
-1013fbfe:	4641                	li	a2,16
-1013fc00:	85d6                	mv	a1,s5
-1013fc02:	00c10533          	add	a0,sp,a2
-1013fc06:	f0ecc097          	auipc	ra,0xf0ecc
-1013fc0a:	f0e080e7          	jalr	-242(ra) # 100bb14 <memcpy>
-1013fc0e:	009a05b3          	add	a1,s4,s1
-1013fc12:	4641                	li	a2,16
-1013fc14:	1008                	addi	a0,sp,32
-1013fc16:	f0ecc097          	auipc	ra,0xf0ecc
-1013fc1a:	efe080e7          	jalr	-258(ra) # 100bb14 <memcpy>
-1013fc1e:	5702                	lw	a4,32(sp)
-1013fc20:	46c2                	lw	a3,16(sp)
-1013fc22:	009985b3          	add	a1,s3,s1
-1013fc26:	4641                	li	a2,16
-1013fc28:	8f35                	xor	a4,a4,a3
-1013fc2a:	d03a                	sw	a4,32(sp)
-1013fc2c:	46d2                	lw	a3,20(sp)
-1013fc2e:	5712                	lw	a4,36(sp)
-1013fc30:	1008                	addi	a0,sp,32
-1013fc32:	c62e                	sw	a1,12(sp)
-1013fc34:	8f35                	xor	a4,a4,a3
-1013fc36:	d23a                	sw	a4,36(sp)
-1013fc38:	46e2                	lw	a3,24(sp)
-1013fc3a:	5722                	lw	a4,40(sp)
-1013fc3c:	04c1                	addi	s1,s1,16
+1013fbb8 <SM4_CBC_encrypt_process>:
+1013fbb8:	f0ecc317          	auipc	t1,0xf0ecc
+1013fbbc:	e40302e7          	jalr	t0,-448(t1) # 100b9f8 <__riscv_save_4>
+1013fbc0:	7179                	addi	sp,sp,-48
+1013fbc2:	5479                	li	s0,-2
+1013fbc4:	c5d5                	beqz	a1,1013fc70 <SM4_CBC_encrypt_process+0xb8>
+1013fbc6:	8a32                	mv	s4,a2
+1013fbc8:	5479                	li	s0,-2
+1013fbca:	c25d                	beqz	a2,1013fc70 <SM4_CBC_encrypt_process+0xb8>
+1013fbcc:	89b6                	mv	s3,a3
+1013fbce:	c2cd                	beqz	a3,1013fc70 <SM4_CBC_encrypt_process+0xb8>
+1013fbd0:	893a                	mv	s2,a4
+1013fbd2:	cf59                	beqz	a4,1013fc70 <SM4_CBC_encrypt_process+0xb8>
+1013fbd4:	00f77493          	andi	s1,a4,15
+1013fbd8:	ecc1                	bnez	s1,1013fc70 <SM4_CBC_encrypt_process+0xb8>
+1013fbda:	4789                	li	a5,2
+1013fbdc:	8aae                	mv	s5,a1
+1013fbde:	00f50563          	beq	a0,a5,1013fbe8 <SM4_CBC_encrypt_process+0x30>
+1013fbe2:	4795                	li	a5,5
+1013fbe4:	08f51663          	bne	a0,a5,1013fc70 <SM4_CBC_encrypt_process+0xb8>
+1013fbe8:	101407b7          	lui	a5,0x10140
+1013fbec:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
+1013fbf0:	44a7cb0b          	th.lrw	s6,a5,a0,2
+1013fbf4:	45c1                	li	a1,16
+1013fbf6:	855a                	mv	a0,s6
+1013fbf8:	3539                	jal	1013fa06 <is_key_empty>
+1013fbfa:	842a                	mv	s0,a0
+1013fbfc:	e141                	bnez	a0,1013fc7c <SM4_CBC_encrypt_process+0xc4>
+1013fbfe:	855a                	mv	a0,s6
+1013fc00:	f0ec6097          	auipc	ra,0xf0ec6
+1013fc04:	8ce080e7          	jalr	-1842(ra) # 10054ce <HAL_SM4_KeyExpansion>
+1013fc08:	4641                	li	a2,16
+1013fc0a:	85d6                	mv	a1,s5
+1013fc0c:	00c10533          	add	a0,sp,a2
+1013fc10:	f0ecc097          	auipc	ra,0xf0ecc
+1013fc14:	f04080e7          	jalr	-252(ra) # 100bb14 <memcpy>
+1013fc18:	009a05b3          	add	a1,s4,s1
+1013fc1c:	4641                	li	a2,16
+1013fc1e:	1008                	addi	a0,sp,32
+1013fc20:	f0ecc097          	auipc	ra,0xf0ecc
+1013fc24:	ef4080e7          	jalr	-268(ra) # 100bb14 <memcpy>
+1013fc28:	5702                	lw	a4,32(sp)
+1013fc2a:	46c2                	lw	a3,16(sp)
+1013fc2c:	009985b3          	add	a1,s3,s1
+1013fc30:	4641                	li	a2,16
+1013fc32:	8f35                	xor	a4,a4,a3
+1013fc34:	d03a                	sw	a4,32(sp)
+1013fc36:	46d2                	lw	a3,20(sp)
+1013fc38:	5712                	lw	a4,36(sp)
+1013fc3a:	1008                	addi	a0,sp,32
+1013fc3c:	c62e                	sw	a1,12(sp)
 1013fc3e:	8f35                	xor	a4,a4,a3
-1013fc40:	d43a                	sw	a4,40(sp)
-1013fc42:	46f2                	lw	a3,28(sp)
-1013fc44:	5732                	lw	a4,44(sp)
-1013fc46:	8f35                	xor	a4,a4,a3
-1013fc48:	d63a                	sw	a4,44(sp)
-1013fc4a:	f0ec6097          	auipc	ra,0xf0ec6
-1013fc4e:	8a2080e7          	jalr	-1886(ra) # 10054ec <HAL_SM4_Encrypt>
-1013fc52:	45b2                	lw	a1,12(sp)
-1013fc54:	4641                	li	a2,16
-1013fc56:	00c10533          	add	a0,sp,a2
-1013fc5a:	f0ecc097          	auipc	ra,0xf0ecc
-1013fc5e:	eba080e7          	jalr	-326(ra) # 100bb14 <memcpy>
-1013fc62:	fb24e6e3          	bltu	s1,s2,1013fc0e <SM4_CBC_encrypt_process+0x60>
-1013fc66:	8522                	mv	a0,s0
-1013fc68:	6145                	addi	sp,sp,48
-1013fc6a:	f0ecc317          	auipc	t1,0xf0ecc
-1013fc6e:	dc230067          	jr	-574(t1) # 100ba2c <__riscv_restore_4>
-1013fc72:	5461                	li	s0,-8
-1013fc74:	bfcd                	j	1013fc66 <SM4_CBC_encrypt_process+0xb8>
+1013fc40:	d23a                	sw	a4,36(sp)
+1013fc42:	46e2                	lw	a3,24(sp)
+1013fc44:	5722                	lw	a4,40(sp)
+1013fc46:	04c1                	addi	s1,s1,16
+1013fc48:	8f35                	xor	a4,a4,a3
+1013fc4a:	d43a                	sw	a4,40(sp)
+1013fc4c:	46f2                	lw	a3,28(sp)
+1013fc4e:	5732                	lw	a4,44(sp)
+1013fc50:	8f35                	xor	a4,a4,a3
+1013fc52:	d63a                	sw	a4,44(sp)
+1013fc54:	f0ec6097          	auipc	ra,0xf0ec6
+1013fc58:	898080e7          	jalr	-1896(ra) # 10054ec <HAL_SM4_Encrypt>
+1013fc5c:	45b2                	lw	a1,12(sp)
+1013fc5e:	4641                	li	a2,16
+1013fc60:	00c10533          	add	a0,sp,a2
+1013fc64:	f0ecc097          	auipc	ra,0xf0ecc
+1013fc68:	eb0080e7          	jalr	-336(ra) # 100bb14 <memcpy>
+1013fc6c:	fb24e6e3          	bltu	s1,s2,1013fc18 <SM4_CBC_encrypt_process+0x60>
+1013fc70:	8522                	mv	a0,s0
+1013fc72:	6145                	addi	sp,sp,48
+1013fc74:	f0ecc317          	auipc	t1,0xf0ecc
+1013fc78:	db830067          	jr	-584(t1) # 100ba2c <__riscv_restore_4>
+1013fc7c:	5461                	li	s0,-8
+1013fc7e:	bfcd                	j	1013fc70 <SM4_CBC_encrypt_process+0xb8>
 
-1013fc76 <SM4_CBC_decrypt_process>:
-1013fc76:	f0ecc317          	auipc	t1,0xf0ecc
-1013fc7a:	d74302e7          	jalr	t0,-652(t1) # 100b9ea <__riscv_save_10>
-1013fc7e:	7179                	addi	sp,sp,-48
-1013fc80:	5479                	li	s0,-2
-1013fc82:	cdb9                	beqz	a1,1013fce0 <SM4_CBC_decrypt_process+0x6a>
-1013fc84:	8a32                	mv	s4,a2
-1013fc86:	5479                	li	s0,-2
-1013fc88:	ce21                	beqz	a2,1013fce0 <SM4_CBC_decrypt_process+0x6a>
-1013fc8a:	84b6                	mv	s1,a3
-1013fc8c:	cab1                	beqz	a3,1013fce0 <SM4_CBC_decrypt_process+0x6a>
-1013fc8e:	00f77913          	andi	s2,a4,15
-1013fc92:	89ba                	mv	s3,a4
-1013fc94:	04091663          	bnez	s2,1013fce0 <SM4_CBC_decrypt_process+0x6a>
-1013fc98:	4789                	li	a5,2
-1013fc9a:	8aae                	mv	s5,a1
-1013fc9c:	00f50563          	beq	a0,a5,1013fca6 <SM4_CBC_decrypt_process+0x30>
-1013fca0:	4795                	li	a5,5
-1013fca2:	02f51f63          	bne	a0,a5,1013fce0 <SM4_CBC_decrypt_process+0x6a>
-1013fca6:	101407b7          	lui	a5,0x10140
-1013fcaa:	e1478793          	addi	a5,a5,-492 # 1013fe14 <key_data_table>
-1013fcae:	44a7cb0b          	th.lrw	s6,a5,a0,2
-1013fcb2:	45c1                	li	a1,16
-1013fcb4:	855a                	mv	a0,s6
-1013fcb6:	3399                	jal	1013f9fc <is_key_empty>
-1013fcb8:	842a                	mv	s0,a0
-1013fcba:	e149                	bnez	a0,1013fd3c <SM4_CBC_decrypt_process+0xc6>
-1013fcbc:	855a                	mv	a0,s6
-1013fcbe:	f0ec6097          	auipc	ra,0xf0ec6
-1013fcc2:	810080e7          	jalr	-2032(ra) # 10054ce <HAL_SM4_KeyExpansion>
-1013fcc6:	85d6                	mv	a1,s5
-1013fcc8:	4641                	li	a2,16
-1013fcca:	850a                	mv	a0,sp
-1013fccc:	f0ecc097          	auipc	ra,0xf0ecc
-1013fcd0:	e48080e7          	jalr	-440(ra) # 100bb14 <memcpy>
-1013fcd4:	4a82                	lw	s5,0(sp)
-1013fcd6:	4b12                	lw	s6,4(sp)
-1013fcd8:	4ba2                	lw	s7,8(sp)
-1013fcda:	4c32                	lw	s8,12(sp)
-1013fcdc:	01396863          	bltu	s2,s3,1013fcec <SM4_CBC_decrypt_process+0x76>
-1013fce0:	8522                	mv	a0,s0
-1013fce2:	6145                	addi	sp,sp,48
-1013fce4:	f0ecc317          	auipc	t1,0xf0ecc
-1013fce8:	d3e30067          	jr	-706(t1) # 100ba22 <__riscv_restore_10>
-1013fcec:	012a0cb3          	add	s9,s4,s2
-1013fcf0:	4641                	li	a2,16
-1013fcf2:	85e6                	mv	a1,s9
-1013fcf4:	00c10533          	add	a0,sp,a2
-1013fcf8:	f0ecc097          	auipc	ra,0xf0ecc
-1013fcfc:	e1c080e7          	jalr	-484(ra) # 100bb14 <memcpy>
-1013fd00:	4641                	li	a2,16
-1013fd02:	100c                	addi	a1,sp,32
-1013fd04:	8566                	mv	a0,s9
-1013fd06:	f0ec6097          	auipc	ra,0xf0ec6
-1013fd0a:	808080e7          	jalr	-2040(ra) # 100550e <HAL_SM4_Decrypt>
-1013fd0e:	5702                	lw	a4,32(sp)
-1013fd10:	0941                	addi	s2,s2,16
-1013fd12:	01574733          	xor	a4,a4,s5
-1013fd16:	c098                	sw	a4,0(s1)
-1013fd18:	5712                	lw	a4,36(sp)
-1013fd1a:	4ac2                	lw	s5,16(sp)
-1013fd1c:	01674733          	xor	a4,a4,s6
-1013fd20:	c0d8                	sw	a4,4(s1)
-1013fd22:	5722                	lw	a4,40(sp)
-1013fd24:	4b52                	lw	s6,20(sp)
-1013fd26:	01774733          	xor	a4,a4,s7
-1013fd2a:	c498                	sw	a4,8(s1)
-1013fd2c:	5732                	lw	a4,44(sp)
-1013fd2e:	4be2                	lw	s7,24(sp)
-1013fd30:	01874733          	xor	a4,a4,s8
-1013fd34:	c4d8                	sw	a4,12(s1)
-1013fd36:	4c72                	lw	s8,28(sp)
-1013fd38:	04c1                	addi	s1,s1,16
-1013fd3a:	b74d                	j	1013fcdc <SM4_CBC_decrypt_process+0x66>
-1013fd3c:	5461                	li	s0,-8
-1013fd3e:	b74d                	j	1013fce0 <SM4_CBC_decrypt_process+0x6a>
+1013fc80 <SM4_CBC_decrypt_process>:
+1013fc80:	f0ecc317          	auipc	t1,0xf0ecc
+1013fc84:	d6a302e7          	jalr	t0,-662(t1) # 100b9ea <__riscv_save_10>
+1013fc88:	7179                	addi	sp,sp,-48
+1013fc8a:	5479                	li	s0,-2
+1013fc8c:	cdb9                	beqz	a1,1013fcea <SM4_CBC_decrypt_process+0x6a>
+1013fc8e:	8a32                	mv	s4,a2
+1013fc90:	5479                	li	s0,-2
+1013fc92:	ce21                	beqz	a2,1013fcea <SM4_CBC_decrypt_process+0x6a>
+1013fc94:	84b6                	mv	s1,a3
+1013fc96:	cab1                	beqz	a3,1013fcea <SM4_CBC_decrypt_process+0x6a>
+1013fc98:	00f77913          	andi	s2,a4,15
+1013fc9c:	89ba                	mv	s3,a4
+1013fc9e:	04091663          	bnez	s2,1013fcea <SM4_CBC_decrypt_process+0x6a>
+1013fca2:	4789                	li	a5,2
+1013fca4:	8aae                	mv	s5,a1
+1013fca6:	00f50563          	beq	a0,a5,1013fcb0 <SM4_CBC_decrypt_process+0x30>
+1013fcaa:	4795                	li	a5,5
+1013fcac:	02f51f63          	bne	a0,a5,1013fcea <SM4_CBC_decrypt_process+0x6a>
+1013fcb0:	101407b7          	lui	a5,0x10140
+1013fcb4:	e1c78793          	addi	a5,a5,-484 # 1013fe1c <key_data_table>
+1013fcb8:	44a7cb0b          	th.lrw	s6,a5,a0,2
+1013fcbc:	45c1                	li	a1,16
+1013fcbe:	855a                	mv	a0,s6
+1013fcc0:	3399                	jal	1013fa06 <is_key_empty>
+1013fcc2:	842a                	mv	s0,a0
+1013fcc4:	e149                	bnez	a0,1013fd46 <SM4_CBC_decrypt_process+0xc6>
+1013fcc6:	855a                	mv	a0,s6
+1013fcc8:	f0ec6097          	auipc	ra,0xf0ec6
+1013fccc:	806080e7          	jalr	-2042(ra) # 10054ce <HAL_SM4_KeyExpansion>
+1013fcd0:	85d6                	mv	a1,s5
+1013fcd2:	4641                	li	a2,16
+1013fcd4:	850a                	mv	a0,sp
+1013fcd6:	f0ecc097          	auipc	ra,0xf0ecc
+1013fcda:	e3e080e7          	jalr	-450(ra) # 100bb14 <memcpy>
+1013fcde:	4a82                	lw	s5,0(sp)
+1013fce0:	4b12                	lw	s6,4(sp)
+1013fce2:	4ba2                	lw	s7,8(sp)
+1013fce4:	4c32                	lw	s8,12(sp)
+1013fce6:	01396863          	bltu	s2,s3,1013fcf6 <SM4_CBC_decrypt_process+0x76>
+1013fcea:	8522                	mv	a0,s0
+1013fcec:	6145                	addi	sp,sp,48
+1013fcee:	f0ecc317          	auipc	t1,0xf0ecc
+1013fcf2:	d3430067          	jr	-716(t1) # 100ba22 <__riscv_restore_10>
+1013fcf6:	012a0cb3          	add	s9,s4,s2
+1013fcfa:	4641                	li	a2,16
+1013fcfc:	85e6                	mv	a1,s9
+1013fcfe:	00c10533          	add	a0,sp,a2
+1013fd02:	f0ecc097          	auipc	ra,0xf0ecc
+1013fd06:	e12080e7          	jalr	-494(ra) # 100bb14 <memcpy>
+1013fd0a:	4641                	li	a2,16
+1013fd0c:	100c                	addi	a1,sp,32
+1013fd0e:	8566                	mv	a0,s9
+1013fd10:	f0ec5097          	auipc	ra,0xf0ec5
+1013fd14:	7fe080e7          	jalr	2046(ra) # 100550e <HAL_SM4_Decrypt>
+1013fd18:	5702                	lw	a4,32(sp)
+1013fd1a:	0941                	addi	s2,s2,16
+1013fd1c:	01574733          	xor	a4,a4,s5
+1013fd20:	c098                	sw	a4,0(s1)
+1013fd22:	5712                	lw	a4,36(sp)
+1013fd24:	4ac2                	lw	s5,16(sp)
+1013fd26:	01674733          	xor	a4,a4,s6
+1013fd2a:	c0d8                	sw	a4,4(s1)
+1013fd2c:	5722                	lw	a4,40(sp)
+1013fd2e:	4b52                	lw	s6,20(sp)
+1013fd30:	01774733          	xor	a4,a4,s7
+1013fd34:	c498                	sw	a4,8(s1)
+1013fd36:	5732                	lw	a4,44(sp)
+1013fd38:	4be2                	lw	s7,24(sp)
+1013fd3a:	01874733          	xor	a4,a4,s8
+1013fd3e:	c4d8                	sw	a4,12(s1)
+1013fd40:	4c72                	lw	s8,28(sp)
+1013fd42:	04c1                	addi	s1,s1,16
+1013fd44:	b74d                	j	1013fce6 <SM4_CBC_decrypt_process+0x66>
+1013fd46:	5461                	li	s0,-8
+1013fd48:	b74d                	j	1013fcea <SM4_CBC_decrypt_process+0x6a>
 
-1013fd40 <Security_TRNG_SelfTest>:
-1013fd40:	f0ecc317          	auipc	t1,0xf0ecc
-1013fd44:	cd2302e7          	jalr	t0,-814(t1) # 100ba12 <__riscv_save_0>
-1013fd48:	711d                	addi	sp,sp,-96
-1013fd4a:	02000593          	li	a1,32
-1013fd4e:	850a                	mv	a0,sp
-1013fd50:	3889                	jal	1013f5a2 <trng_derive_key>
-1013fd52:	842a                	mv	s0,a0
-1013fd54:	5579                	li	a0,-2
-1013fd56:	e04d                	bnez	s0,1013fdf8 <Security_TRNG_SelfTest+0xb8>
-1013fd58:	02010813          	addi	a6,sp,32
-1013fd5c:	04000613          	li	a2,64
-1013fd60:	4581                	li	a1,0
-1013fd62:	8542                	mv	a0,a6
-1013fd64:	f0ecc097          	auipc	ra,0xf0ecc
-1013fd68:	dc8080e7          	jalr	-568(ra) # 100bb2c <memset>
-1013fd6c:	882a                	mv	a6,a0
-1013fd6e:	848a                	mv	s1,sp
-1013fd70:	4501                	li	a0,0
-1013fd72:	4701                	li	a4,0
-1013fd74:	4681                	li	a3,0
-1013fd76:	55fd                	li	a1,-1
-1013fd78:	4605                	li	a2,1
-1013fd7a:	4ea1                	li	t4,8
-1013fd7c:	02000e13          	li	t3,32
-1013fd80:	80a4c78b          	th.lrbu	a5,s1,a0,0
-1013fd84:	4881                	li	a7,0
-1013fd86:	832e                	mv	t1,a1
-1013fd88:	4117d5b3          	sra	a1,a5,a7
-1013fd8c:	8985                	andi	a1,a1,1
-1013fd8e:	96ae                	add	a3,a3,a1
-1013fd90:	06659963          	bne	a1,t1,1013fe02 <Security_TRNG_SelfTest+0xc2>
-1013fd94:	0605                	addi	a2,a2,1
-1013fd96:	0885                	addi	a7,a7,1
-1013fd98:	ffd897e3          	bne	a7,t4,1013fd86 <Security_TRNG_SelfTest+0x46>
-1013fd9c:	00f7f313          	andi	t1,a5,15
-1013fda0:	4468488b          	th.lrw	a7,a6,t1,2
-1013fda4:	8391                	srli	a5,a5,0x4
-1013fda6:	0505                	addi	a0,a0,1
-1013fda8:	0885                	addi	a7,a7,1
-1013fdaa:	4468588b          	th.srw	a7,a6,t1,2
-1013fdae:	44f8488b          	th.lrw	a7,a6,a5,2
+1013fd4a <Security_TRNG_SelfTest>:
+1013fd4a:	f0ecc317          	auipc	t1,0xf0ecc
+1013fd4e:	cc8302e7          	jalr	t0,-824(t1) # 100ba12 <__riscv_save_0>
+1013fd52:	711d                	addi	sp,sp,-96
+1013fd54:	02000593          	li	a1,32
+1013fd58:	850a                	mv	a0,sp
+1013fd5a:	30a1                	jal	1013f5a2 <trng_derive_key>
+1013fd5c:	842a                	mv	s0,a0
+1013fd5e:	5579                	li	a0,-2
+1013fd60:	e04d                	bnez	s0,1013fe02 <Security_TRNG_SelfTest+0xb8>
+1013fd62:	02010813          	addi	a6,sp,32
+1013fd66:	04000613          	li	a2,64
+1013fd6a:	4581                	li	a1,0
+1013fd6c:	8542                	mv	a0,a6
+1013fd6e:	f0ecc097          	auipc	ra,0xf0ecc
+1013fd72:	dbe080e7          	jalr	-578(ra) # 100bb2c <memset>
+1013fd76:	882a                	mv	a6,a0
+1013fd78:	848a                	mv	s1,sp
+1013fd7a:	4501                	li	a0,0
+1013fd7c:	4701                	li	a4,0
+1013fd7e:	4681                	li	a3,0
+1013fd80:	55fd                	li	a1,-1
+1013fd82:	4605                	li	a2,1
+1013fd84:	4ea1                	li	t4,8
+1013fd86:	02000e13          	li	t3,32
+1013fd8a:	80a4c78b          	th.lrbu	a5,s1,a0,0
+1013fd8e:	4881                	li	a7,0
+1013fd90:	832e                	mv	t1,a1
+1013fd92:	4117d5b3          	sra	a1,a5,a7
+1013fd96:	8985                	andi	a1,a1,1
+1013fd98:	96ae                	add	a3,a3,a1
+1013fd9a:	06659963          	bne	a1,t1,1013fe0c <Security_TRNG_SelfTest+0xc2>
+1013fd9e:	0605                	addi	a2,a2,1
+1013fda0:	0885                	addi	a7,a7,1
+1013fda2:	ffd897e3          	bne	a7,t4,1013fd90 <Security_TRNG_SelfTest+0x46>
+1013fda6:	00f7f313          	andi	t1,a5,15
+1013fdaa:	4468488b          	th.lrw	a7,a6,t1,2
+1013fdae:	8391                	srli	a5,a5,0x4
+1013fdb0:	0505                	addi	a0,a0,1
 1013fdb2:	0885                	addi	a7,a7,1
-1013fdb4:	44f8588b          	th.srw	a7,a6,a5,2
-1013fdb8:	fdc514e3          	bne	a0,t3,1013fd80 <Security_TRNG_SelfTest+0x40>
-1013fdbc:	4781                	li	a5,0
-1013fdbe:	4541                	li	a0,16
-1013fdc0:	4488458b          	th.lrw	a1,a6,s0,2
-1013fdc4:	0405                	addi	s0,s0,1
-1013fdc6:	20b5978b          	th.mula	a5,a1,a1
-1013fdca:	fea41be3          	bne	s0,a0,1013fdc0 <Security_TRNG_SelfTest+0x80>
-1013fdce:	00c72533          	slt	a0,a4,a2
-1013fdd2:	55fd                	li	a1,-1
-1013fdd4:	42a6170b          	th.mvnez	a4,a2,a0
-1013fdd8:	1c37b513          	sltiu	a0,a5,451
-1013fddc:	47fd                	li	a5,31
-1013fdde:	00e7a733          	slt	a4,a5,a4
-1013fde2:	f9868693          	addi	a3,a3,-104
-1013fde6:	952e                	add	a0,a0,a1
-1013fde8:	03000793          	li	a5,48
-1013fdec:	42e5950b          	th.mvnez	a0,a1,a4
-1013fdf0:	00d7b6b3          	sltu	a3,a5,a3
-1013fdf4:	42d5950b          	th.mvnez	a0,a1,a3
-1013fdf8:	6125                	addi	sp,sp,96
-1013fdfa:	f0ecc317          	auipc	t1,0xf0ecc
-1013fdfe:	c3c30067          	jr	-964(t1) # 100ba36 <__riscv_restore_0>
-1013fe02:	00c72333          	slt	t1,a4,a2
-1013fe06:	4266170b          	th.mvnez	a4,a2,t1
-1013fe0a:	4605                	li	a2,1
-1013fe0c:	b769                	j	1013fd96 <Security_TRNG_SelfTest+0x56>
+1013fdb4:	4468588b          	th.srw	a7,a6,t1,2
+1013fdb8:	44f8488b          	th.lrw	a7,a6,a5,2
+1013fdbc:	0885                	addi	a7,a7,1
+1013fdbe:	44f8588b          	th.srw	a7,a6,a5,2
+1013fdc2:	fdc514e3          	bne	a0,t3,1013fd8a <Security_TRNG_SelfTest+0x40>
+1013fdc6:	4781                	li	a5,0
+1013fdc8:	4541                	li	a0,16
+1013fdca:	4488458b          	th.lrw	a1,a6,s0,2
+1013fdce:	0405                	addi	s0,s0,1
+1013fdd0:	20b5978b          	th.mula	a5,a1,a1
+1013fdd4:	fea41be3          	bne	s0,a0,1013fdca <Security_TRNG_SelfTest+0x80>
+1013fdd8:	00c72533          	slt	a0,a4,a2
+1013fddc:	55fd                	li	a1,-1
+1013fdde:	42a6170b          	th.mvnez	a4,a2,a0
+1013fde2:	1c37b513          	sltiu	a0,a5,451
+1013fde6:	47fd                	li	a5,31
+1013fde8:	00e7a733          	slt	a4,a5,a4
+1013fdec:	f9868693          	addi	a3,a3,-104
+1013fdf0:	952e                	add	a0,a0,a1
+1013fdf2:	03000793          	li	a5,48
+1013fdf6:	42e5950b          	th.mvnez	a0,a1,a4
+1013fdfa:	00d7b6b3          	sltu	a3,a5,a3
+1013fdfe:	42d5950b          	th.mvnez	a0,a1,a3
+1013fe02:	6125                	addi	sp,sp,96
+1013fe04:	f0ecc317          	auipc	t1,0xf0ecc
+1013fe08:	c3230067          	jr	-974(t1) # 100ba36 <__riscv_restore_0>
+1013fe0c:	00c72333          	slt	t1,a4,a2
+1013fe10:	4266170b          	th.mvnez	a4,a2,t1
+1013fe14:	4605                	li	a2,1
+1013fe16:	b769                	j	1013fda0 <Security_TRNG_SelfTest+0x56>
 
-1013fe0e <CSWTCH.58>:
-1013fe0e:	2020 0010 0000                                ....
+1013fe18 <CSWTCH.56>:
+1013fe18:	2020 0010                                     ..
 
-1013fe14 <key_data_table>:
-1013fe14:	fef0 1013 fed0 1013 fec0 1013 fea0 1013     ................
-1013fe24:	fe80 1013 fe70 1013 fe30 1013               ....p...0...
+1013fe1c <key_data_table>:
+1013fe1c:	fef8 1013 fed8 1013 fec8 1013 fea8 1013     ................
+1013fe2c:	fe88 1013 fe78 1013 fe38 1013               ....x...8...

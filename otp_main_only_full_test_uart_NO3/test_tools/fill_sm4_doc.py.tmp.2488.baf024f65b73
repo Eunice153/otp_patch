@@ -1,0 +1,297 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+把 sm4_cert_report.md 的 (1)~(4) 填进 分组-2.doc 的 2.1 SM4 接口章节。
+
+只填 2.1：
+  2.1 XX接口      -> 串口命令接口
+  2.1.1 XX算法    -> 2.1.1 SM4 算法
+  (1) 加密(ECB模式)
+  (2) 解密(ECB模式)
+  (3) 加密(CBC模式)
+  (4) 解密(CBC模式)
+
+2.2 保持原样。
+
+输出：脚本同目录 分组-2_已填.doc
+原文件不覆盖；工作副本和备份放在 temp_sm4_doc/。
+
+用法：
+    python3 fill_sm4_doc.py
+    python3 fill_sm4_doc.py --doc 分组-2.doc --report sm4_cert_report.md
+"""
+
+import argparse
+import html
+import os
+import re
+import shutil
+import subprocess
+import sys
+
+CSS = """
+body { font-family: "宋体", SimSun, serif; font-size: 9pt; }
+p { margin: 3pt 0; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 0.5pt solid #000000; padding: 1pt 2pt;
+         font-size: 7.5pt; vertical-align: top; }
+th { background: #EFEFEF; font-weight: bold; }
+"""
+
+
+def clean(text):
+    return html.escape(text.replace("`", "").strip(), quote=False)
+
+
+def parse_report(path):
+    text = open(path, encoding="utf-8").read()
+    lines = text.splitlines()
+    sections = {}
+    current = None
+    blocks = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        m = re.match(r"^#### \((\d)\)", line)
+        if m:
+            if current is not None:
+                sections[current] = blocks
+            current = int(m.group(1))
+            blocks = []
+            i += 1
+            continue
+        if current is not None and line.startswith("### "):
+            sections[current] = blocks
+            current = None
+            blocks = []
+            i += 1
+            continue
+        if current is None:
+            i += 1
+            continue
+        if not line.strip():
+            i += 1
+            continue
+        if line.startswith("|"):
+            table_lines = []
+            while i < len(lines) and lines[i].startswith("|"):
+                table_lines.append(lines[i])
+                i += 1
+            rows = []
+            for tl in table_lines:
+                cells = [c.strip() for c in tl.strip().strip("|").split("|")]
+                if all(re.fullmatch(r":?-{3,}:?", c) for c in cells):
+                    continue
+                rows.append(cells)
+            if rows:
+                blocks.append(("table", rows[0], rows[1:]))
+            continue
+        if line.startswith("**") and line.endswith("**"):
+            blocks.append(("bold", line.strip("*")))
+        else:
+            blocks.append(("p", line))
+        i += 1
+    if current is not None:
+        sections[current] = blocks
+    return sections, text
+
+
+def blocks_to_html(blocks, intro=""):
+    out = ['<html><head><meta charset="utf-8"><style>%s</style></head><body>' % CSS]
+    if intro:
+        out.append("<p>%s</p>" % clean(intro))
+    for block in blocks:
+        kind = block[0]
+        if kind == "p":
+            out.append("<p>%s</p>" % clean(block[1]))
+        elif kind == "bold":
+            out.append("<p><b>%s</b></p>" % clean(block[1]))
+        elif kind == "table":
+            header, rows = block[1], block[2]
+            out.append("<table>")
+            out.append("<tr>" + "".join("<th>%s</th>" % clean(c)
+                                        for c in header) + "</tr>")
+            for row in rows:
+                if len(row) < len(header):
+                    row = row + [""] * (len(header) - len(row))
+                elif len(row) > len(header):
+                    row = row[:len(header)]
+                out.append("<tr>" + "".join("<td>%s</td>" % clean(c)
+                                            for c in row) + "</tr>")
+            out.append("</table>")
+    out.append("</body></html>")
+    return "\n".join(out)
+
+
+PS_SCRIPT = r'''
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+$ErrorActionPreference = 'Stop'
+
+$docPath = $args[0]
+$tempDir = $args[1]
+$outPath = $args[2]
+
+$word = New-Object -ComObject Word.Application
+$word.Visible = $false
+$word.DisplayAlerts = 0
+
+try {
+    $doc = $word.Documents.Open($docPath, $false, $false)
+
+    # 找正文里的 2.1.1 XX算法标题（跳过目录）
+    $anchor = 0
+    for ($i = 1; $i -le $doc.Paragraphs.Count; $i++) {
+        $p = $doc.Paragraphs.Item($i)
+        $style = ""
+        try { $style = $p.Style.NameLocal } catch {}
+        if ($style -like "TOC*" -or $style -like "目录*") { continue }
+        $t = $p.Range.Text.Trim()
+        if ($t -match "^2\.1\.1.*算法") { $anchor = $i; break }
+    }
+    if ($anchor -eq 0) { throw "找不到正文中的 2.1.1 算法标题" }
+
+    $names = @("加密(ECB模式)", "解密(ECB模式)", "加密(CBC模式)", "解密(CBC模式)")
+    for ($k = 0; $k -lt 4; $k++) {
+        $h = $doc.Paragraphs.Item($anchor + 1 + 2 * $k).Range.Text.Trim()
+        if ($h -ne $names[$k]) {
+            throw ("文档结构不匹配：期望 " + $names[$k] + "，实际 " + $h)
+        }
+        $phText = $doc.Paragraphs.Item($anchor + 2 + 2 * $k).Range.Text.Trim()
+        if ($phText -ne "") {
+            throw ("填写位非空（可能已经填写过）：" + $names[$k])
+        }
+    }
+
+    # 2.1 接口名 / 算法名
+    $p = $doc.Paragraphs.Item($anchor - 1)
+    if ($p.Range.Text.Trim() -eq "XX接口") {
+        $r = $p.Range
+        $r.MoveEnd(1, -1) | Out-Null
+        $r.Text = "串口命令接口"
+    }
+    $p = $doc.Paragraphs.Item($anchor)
+    if ($p.Range.Text.Trim() -eq "2.1.1 XX算法") {
+        $r = $p.Range
+        $r.MoveEnd(1, -1) | Out-Null
+        $r.Text = "2.1.1 SM4 算法"
+    }
+
+    # 从最后一个填写位往前插
+    for ($k = 3; $k -ge 0; $k--) {
+        $idx = $anchor + 2 + 2 * $k
+        $htmlPath = Join-Path $tempDir ("sec" + ($k + 1) + ".html")
+        if (-not (Test-Path $htmlPath)) { throw ("缺少 " + $htmlPath) }
+        $html = $word.Documents.Open($htmlPath, $false, $true)
+        $r = $doc.Paragraphs.Item($idx).Range
+        $r.Collapse(1)
+        $r.FormattedText = $html.Content.FormattedText
+        $html.Close($false)
+    }
+
+    # 只格式化新表：表头首格是“组”
+    for ($i = 1; $i -le $doc.Tables.Count; $i++) {
+        $tbl = $doc.Tables.Item($i)
+        if ($tbl.Cell(1,1).Range.Text.Trim() -ne "组") { continue }
+        $tbl.Range.Font.Name = "宋体"
+        $tbl.Range.Font.Size = 7.5
+        $tbl.Borders.InsideLineStyle = 1
+        $tbl.Borders.OutsideLineStyle = 1
+        $tbl.Rows.Item(1).Range.Font.Bold = $true
+        $tbl.Rows.Item(1).HeadingFormat = $true
+        $tbl.Rows.Alignment = 1
+        $tbl.AutoFitBehavior(1)
+    }
+
+    # 粘贴进来的网页样式段落统一改成正文
+    $normal = $doc.Styles.Item(-1)
+    for ($i = 1; $i -le $doc.Paragraphs.Count; $i++) {
+        $p = $doc.Paragraphs.Item($i)
+        try {
+            if ($p.Style.NameLocal -match "网站|Web") { $p.Style = $normal }
+        } catch {}
+    }
+
+    $tcount = $doc.Tables.Count
+    $doc.SaveAs([ref]$outPath, [ref]0)
+    $doc.Close($false)
+    Write-Output ("OK anchor=" + $anchor + " tables=" + $tcount + " out=" + $outPath)
+}
+finally {
+    $word.Quit()
+}
+'''
+
+
+def winpath(path):
+    return subprocess.check_output(["wslpath", "-w", os.path.abspath(path)],
+                                   text=True).strip()
+
+
+def main():
+    here = os.path.dirname(os.path.abspath(__file__))
+    ap = argparse.ArgumentParser(description="把 SM4 报告填入 分组-2.doc 的 2.1")
+    ap.add_argument("--doc", default=os.path.join(here, "分组-2.doc"))
+    ap.add_argument("--report", default=os.path.join(here, "sm4_cert_report.md"))
+    ap.add_argument("--temp", default=os.path.join(here, "temp_sm4_doc"))
+    ap.add_argument("--out", default=os.path.join(here, "分组-2_已填.doc"))
+    args = ap.parse_args()
+
+    os.makedirs(args.temp, exist_ok=True)
+    if not os.path.exists(args.doc):
+        sys.exit("找不到文档：%s" % args.doc)
+    if not os.path.exists(args.report):
+        sys.exit("找不到报告：%s" % args.report)
+
+    sections, text = parse_report(args.report)
+    for n in range(1, 5):
+        if n not in sections:
+            sys.exit("报告里缺少第 (%d) 节" % n)
+
+    m_key = re.search(r"密钥 K（16 B）：`([0-9A-F ]+)`", text)
+    m_iv = re.search(r"CBC IV：`([0-9A-F ]+)`", text)
+    key = m_key.group(1).strip() if m_key else ""
+    iv = m_iv.group(1).strip() if m_iv else ""
+    intro1 = ("测试参数：SM4 密钥 K = %s；CBC IV = %s；"
+              "参考实现：独立 Python SM4（ECB/CBC）。" % (key, iv))
+    intro3 = "CBC IV = %s。" % iv
+
+    for n in range(1, 5):
+        intro = intro1 if n == 1 else (intro3 if n == 3 else "")
+        path = os.path.join(args.temp, "sec%d.html" % n)
+        with open(path, "w", encoding="utf-8", newline="\n") as f:
+            f.write(blocks_to_html(sections[n], intro))
+        print("生成 %s（%d 个块）" % (path, len(sections[n])))
+
+    # 备份 + 工作副本
+    backup = os.path.join(args.temp, "分组-2_原始备份.doc")
+    if not os.path.exists(backup):
+        shutil.copy2(args.doc, backup)
+        print("已备份：%s" % backup)
+    work = os.path.join(args.temp, "分组-2_work.doc")
+    shutil.copy2(args.doc, work)
+
+    ps1 = os.path.join(args.temp, "fill_sm4_doc.ps1")
+    with open(ps1, "w", encoding="utf-8-sig", newline="\n") as f:
+        f.write(PS_SCRIPT)
+
+    if os.path.exists(args.out):
+        os.remove(args.out)
+
+    cmd = [
+        "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass",
+        "-File", winpath(ps1), winpath(work), winpath(args.temp),
+        winpath(args.out),
+    ]
+    print("调用 Word COM 填充...")
+    r = subprocess.run(cmd, text=True, capture_output=True)
+    sys.stdout.write(r.stdout)
+    sys.stderr.write(r.stderr)
+    if r.returncode != 0:
+        sys.exit("Word COM 填充失败（returncode=%d）" % r.returncode)
+    if not os.path.exists(args.out):
+        sys.exit("未生成输出文档")
+    print("已生成：%s" % args.out)
+
+
+if __name__ == "__main__":
+    main()

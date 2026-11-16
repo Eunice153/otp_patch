@@ -1,0 +1,18 @@
+<html><head><meta charset="utf-8"><style>
+body { font-family: "宋体", SimSun, serif; font-size: 9pt; }
+p { margin: 3pt 0; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 0.5pt solid #000000; padding: 1pt 2pt;
+         font-size: 7.5pt; vertical-align: top; }
+th { background: #EFEFEF; font-weight: bold; }
+</style></head><body>
+<p>每组对三份签名做设备验签：设备生成的签名、篡改 1 字节后的签名、上位机用槽 4 私钥生成的签名。预期结果分别为 01、00、01。</p>
+<table>
+<tr><th>组</th><th>设备签名 → 设备验签</th><th>篡改 1 字节 → 设备验签</th><th>上位机签名 → 设备验签</th><th>结论</th></tr>
+<tr><td>1</td><td>01</td><td>00</td><td>01</td><td>通过</td></tr>
+<tr><td>2</td><td>01</td><td>00</td><td>01</td><td>通过</td></tr>
+<tr><td>3</td><td>01</td><td>00</td><td>01</td><td>通过</td></tr>
+<tr><td>4</td><td>01</td><td>00</td><td>01</td><td>通过</td></tr>
+<tr><td>5</td><td>01</td><td>00</td><td>01</td><td>通过</td></tr>
+</table>
+</body></html>
