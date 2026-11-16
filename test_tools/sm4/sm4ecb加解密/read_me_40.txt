@@ -8,14 +8,13 @@ CBC：固定IV，设备CBC加密的结果和Python SM4用K、IV算出的密文�
 再让设备CBC解密，比较解密出的明文和原始明文。
 */
 一、用途
-和原 sm4_ecb.py 功能一样：
+
     GENKEY(5) + 导出/恢复 16B 密钥
     每组长度：
       0x40 ECB 加密 -> 设备密文 vs Python 参考
       0x40 ECB 解密 -> 设备明文 vs 原文
 
-区别：使用 NO3 的 0x40 SM4_BULK，不是 0x20。
-原 sm4_ecb.py 保留不变。
+使用 NO3 的 0x40 SM4_BULK。
 
 二、前提
 - 固件必须是 NO3；NO2 没有 0x40。

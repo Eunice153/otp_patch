@@ -9,7 +9,6 @@
     上位机用 TEST_D 解出 16B SM4 密钥
     用 0x40 SM4_BULK 做 ECB 加密/解密自检
 
-原 0x20 脚本 sm4_key.py 保留不变。
 报告默认写入 ../../sm4_report/sm4_key_40_report.md。
 """
 
@@ -100,7 +99,7 @@ def main():
     md.append("安全说明：只使用临时槽 5（RAM），不发送 SET_PASSWORD / "
               "KEY_STORE / KEY_DESTROY，不写 OTP。\n\n")
     md.append("说明：本脚本用 NO3 的 `0x40 SM4_BULK` 做 ECB 自检；"
-              "原 `0x20` 版本 `sm4_key.py` 保留。\n\n")
+              "本脚本使用 NO3 的 `0x40 SM4_BULK`。\n\n")
     md.append("| 项目 | 结果 |\n|---|---|\n")
     md.append("| GENKEY(5) | %s |\n" % ("OK" if row["genkey"] else "FAIL"))
     md.append("| LOAD_PUBKEY(TEST_D) | %s |\n" % ("OK" if row["load"] else "FAIL"))

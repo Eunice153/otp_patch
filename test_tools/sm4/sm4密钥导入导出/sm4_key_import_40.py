@@ -11,7 +11,6 @@
     EXPORT_KEY(5,1) 导出并比对
     0x40 ECB 加密/解密验证导入密钥
 
-原 0x20 脚本 sm4_key_import.py 保留不变。
 报告默认写入 ../../sm4_report/sm4_key_import_40_report.md。
 """
 
@@ -150,7 +149,7 @@ def main():
               "`KEY_IMPORT` 只写临时槽 5（RAM）。"
               "本脚本不发送 SET_PASSWORD / KEY_STORE / KEY_DESTROY，不写 OTP。\n\n")
     md.append("说明：本脚本用 NO3 的 `0x40 SM4_BULK` 做导入后 ECB 验证；"
-              "原 `0x20` 版本 `sm4_key_import.py` 保留。\n\n")
+              "本脚本使用 NO3 的 `0x40 SM4_BULK` 验证导入后的密钥。\n\n")
     md.append("| 项目 | 值 |\n|---|---|\n")
     md.append("| OTP 解密密钥槽 | %d |\n" % args.dec_id)
     md.append("| OTP 密钥加载 (KEY_LOAD) | %s |\n"

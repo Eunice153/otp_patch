@@ -7,7 +7,6 @@
 固件收齐后调用一次 Invoke_SM3_cal，返回 32B 摘要。
 主机可以一次 write，也可以拆成 n 次 write；应答可以分 n 次 read。
 
-原 0x10 脚本 sm3_oneshot.py 保留不变。
 报告默认写入 ../../sm3_report/sm3_oneshot_41_report.md。
 """
 
@@ -119,8 +118,7 @@ def main():
     md.append("# SM3 单帧大数据测试报告（0x41）\n\n")
     md.append("测试时间：%s\n\n" % now_str())
     md.append("安全说明：SM3 不使用密钥，不涉及 OTP。\n\n")
-    md.append("说明：本脚本用 NO3 的 `0x41 SM3_BULK`；原 `0x10` 版本 "
-              "`sm3_oneshot.py` 保留。\n\n")
+    md.append("说明：本脚本用 NO3 的 `0x41 SM3_BULK`。\n\n")
     md.append("| 项目 | 值 |\n|---|---|\n")
     md.append("| 串口 | %s，%d bps |\n" % (args.port, args.baud))
     md.append("| writes / reads | %d / %d |\n" % (args.writes, args.reads))

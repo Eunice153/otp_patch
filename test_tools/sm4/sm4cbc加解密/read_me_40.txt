@@ -8,20 +8,19 @@ CBC：固定IV，设备CBC加密的结果和Python SM4用K、IV算出的密文�
 再让设备CBC解密，比较解密出的明文和原始明文。
 */
 一、用途
-和原 sm4_cbc.py 功能一样：
+
     GENKEY(5) + 导出/恢复 16B 密钥
     固定 IV：
       0x40 CBC 加密 -> 设备密文 vs Python 参考
       0x40 CBC 解密 -> 设备明文 vs 原文
 
-区别：使用 NO3 的 0x40 SM4_BULK，不是 0x20。
-原 sm4_cbc.py 保留不变。
+使用 NO3 的 0x40 SM4_BULK。
 
 二、前提
 - 固件必须是 NO3；NO2 没有 0x40。
 - 只使用 RAM 临时槽 5，不写 OTP。
 - 0x40 的 data 必须是 16 的倍数，最大 131072B。
-- CBC IV 是 16B，和原 0x20 一样由上位机传。
+- CBC IV 是 16B，由上位机传入。
 
 三、运行
 进入本目录：

@@ -4,7 +4,7 @@
 
 安全说明：只使用临时槽 5（RAM），不发送 SET_PASSWORD / KEY_STORE / KEY_DESTROY，不写 OTP。
 
-说明：本脚本用 NO3 的 `0x40 SM4_BULK`；原 `0x20` 版本 `sm4_cbc.py` 保留。
+说明：本脚本用 NO3 的 `0x40 SM4_BULK`。
 
 测试参数：
 

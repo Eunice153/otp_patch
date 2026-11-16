@@ -1,9 +1,8 @@
 SM4 非正常输入（0x40）read_me
 
 一、用途
-和原 sm4_abnormal.py 的 9 条用例一样，但发送帧改成 NO3 的
+发送帧使用 NO3 的
 0x40 SM4_BULK（4 字节 LEN），应答也是 4 字节 LEN。
-原 sm4_abnormal.py 保留不变。
 
 覆盖：
 - 正常 ECB 16B 基线
@@ -20,8 +19,8 @@ SM4 非正常输入（0x40）read_me
 
 二、前提
 - 固件必须是 NO3；NO2 没有 0x40。
-- 0x40 PAYLOAD 和 0x20 一样：[id, mode, op] + IV + data。
-- 0x40 是 4 字节长度；发送和返回都和 0x20 不同。
+- 0x40 PAYLOAD：[id, mode, op] + IV + data。
+- 0x40 是 4 字节长度，发送和返回与普通 2 字节 LEN 命令不同。
 
 三、运行
 进入本目录：

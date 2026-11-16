@@ -82,9 +82,7 @@ python3 "sm2/sm2加解密密钥导入/sm2_key_import.py" COM24
 
 | 目录 | 脚本 | 用途 |
 |---|---|---|
-| `sm3/sm3单帧` | `sm3_oneshot.py` | 0x10 单帧，≤512B |
 | `sm3/sm3单帧` | `sm3_oneshot_41.py` | NO3 0x41，最大 128KB |
-| `sm3/sm3异常输入` | `sm3_abnormal.py` | 0x10 边界/异常 |
 | `sm3/sm3异常输入` | `sm3_abnormal_41.py` | NO3 0x41 长度边界 |
 | `sm3/sm3_speed` | `sm3_speed.py` | NO3 0x41 速率，默认 128KB×3 |
 
@@ -92,9 +90,7 @@ python3 "sm2/sm2加解密密钥导入/sm2_key_import.py" COM24
 
 ```bash
 cd otp_patch/test_tools
-python3 sm3/sm3单帧/sm3_oneshot.py COM24
 python3 sm3/sm3单帧/sm3_oneshot_41.py COM24
-python3 sm3/sm3异常输入/sm3_abnormal.py COM24
 python3 sm3/sm3异常输入/sm3_abnormal_41.py COM24
 python3 sm3/sm3_speed/sm3_speed.py COM24
 python3 sm3/sm3_speed/sm3_speed.py COM24 --size 64K --runs 5
@@ -106,12 +102,11 @@ python3 sm3/sm3_speed/sm3_speed.py COM24 --size 64K --runs 5
 
 | 目录 | 脚本 | 用途 |
 |---|---|---|
-| `sm4/sm4密钥生成` | `sm4_key.py` | GENKEY(5) + 导出/恢复 16B 密钥 + ECB 自检 |
-| `sm4/sm4ecb加解密` | `sm4_ecb.py` | ECB 加密/解密正确性 |
-| `sm4/sm4cbc加解密` | `sm4_cbc.py` | CBC 加密/解密正确性 |
-| `sm4/sm4密钥导入导出` | `sm4_key_import.py` | SM2 包裹 SM4 密钥导入临时槽 5 |
-| `sm4/sm4异常输入` | `sm4_abnormal.py` | 非法长度/id/mode/op/CBC 参数 |
-| `sm4/sm4大数据` | `sm4_bulk.py` | NO3 0x40，最大 128KB |
+| `sm4/sm4密钥生成` | `sm4_key_40.py` | GENKEY(5) + 导出/恢复 16B 密钥 + ECB 自检 |
+| `sm4/sm4ecb加解密` | `sm4_ecb_40.py` | ECB 加密/解密正确性 |
+| `sm4/sm4cbc加解密` | `sm4_cbc_40.py` | CBC 加密/解密正确性 |
+| `sm4/sm4密钥导入导出` | `sm4_key_import_40.py` | SM2 包裹 SM4 密钥导入临时槽 5 |
+| `sm4/sm4异常输入` | `sm4_abnormal_40.py` | 非法长度/id/mode/op/CBC 参数 |
 | `sm4/sm4ecb_speed` | `sm4_ecb_speed.py` | NO3 0x40 ECB 速率，默认 128KB×3 加密+解密 |
 | `sm4/sm4cbc_speed` | `sm4_cbc_speed.py` | NO3 0x40 CBC 速率，默认 128KB×3 加密+解密 |
 
@@ -119,57 +114,40 @@ python3 sm3/sm3_speed/sm3_speed.py COM24 --size 64K --runs 5
 
 ```bash
 cd otp_patch/test_tools
-python3 sm4/sm4密钥生成/sm4_key.py COM24
-python3 sm4/sm4ecb加解密/sm4_ecb.py COM24
-python3 sm4/sm4cbc加解密/sm4_cbc.py COM24
-python3 sm4/sm4异常输入/sm4_abnormal.py COM24
-python3 sm4/sm4密钥导入导出/sm4_key_import.py COM24
-python3 sm4/sm4大数据/sm4_bulk.py COM24 --mode cbc --lengths 131072
+python3 sm4/sm4密钥生成/sm4_key_40.py COM24
+python3 sm4/sm4ecb加解密/sm4_ecb_40.py COM24
+python3 sm4/sm4cbc加解密/sm4_cbc_40.py COM24
+python3 sm4/sm4异常输入/sm4_abnormal_40.py COM24
+python3 sm4/sm4密钥导入导出/sm4_key_import_40.py COM24
 python3 sm4/sm4ecb_speed/sm4_ecb_speed.py COM24
 python3 sm4/sm4cbc_speed/sm4_cbc_speed.py COM24
 ```
 
 参数、输出和报告格式见 [sm4_tools.md](sm4_tools.md)。
 
-每个 SM4 目录还新增了对应的 0x40 版本（NO3），原脚本保留：
-
-```text
-sm4/sm4密钥生成/sm4_key_40.py
-sm4/sm4ecb加解密/sm4_ecb_40.py
-sm4/sm4cbc加解密/sm4_cbc_40.py
-sm4/sm4密钥导入导出/sm4_key_import_40.py
-sm4/sm4异常输入/sm4_abnormal_40.py
-```
-
-```bash
-python3 sm4/sm4cbc加解密/sm4_cbc_40.py COM24
-python3 sm4/sm4ecb加解密/sm4_ecb_40.py COM24 --lengths 131072
-```
-
 ### NO3 大数据 0x40 / 0x41
 
 NO3 固件额外支持一个逻辑大帧：
 
-- `0x40 SM4_BULK`：4 字节长度，最大 128KB；PAYLOAD 和原 0x20
-  一样是 `[id, mode, op] + 可选口令 + CBC IV + data`。
+- `0x40 SM4_BULK`：4 字节长度，最大 128KB；PAYLOAD 是
+  `[id, mode, op] + 可选口令 + CBC IV + data`。
 - `0x41 SM3_BULK`：4 字节长度，最大 128KB 原始数据，回 32B 摘要。
 
 固件端 128KB×2 缓冲，收齐后只调用一次 Invoke，完整回传。
 上位机可以把整个请求拆成任意 n 次串口 write，也可以分 n 次
 read 收应答；中间没有帧头、偏移或 ACK。
+
 测试脚本：
 
 ```bash
-cd otp_patch/otp_main_only_full_test_uart_NO3/test_tools
-python3 large_bulk.py COM24 --algo sm4 --mode cbc --size 4096 \
-    --writes 8 --reads 8 --verify
-python3 large_bulk.py COM24 --algo sm4 --mode ecb --size 131072
-python3 large_bulk.py COM24 --algo sm3 --size 131072 --writes 16
+cd otp_patch/test_tools
+python3 sm4/sm4ecb加解密/sm4_ecb_40.py COM24 --lengths 131072
+python3 sm4/sm4cbc加解密/sm4_cbc_40.py COM24 --lengths 131072
+python3 sm3/sm3_speed/sm3_speed.py COM24
 ```
 
 只对 NO3 固件有效；NO2 没有 0x40/0x41。详见
-[serial_protocol.md](serial_protocol.md) 和 NO3 的
-`test_tools/large_bulk_read_me.txt`。
+[serial_protocol.md](serial_protocol.md)。
 
 ## 指令自检 / 读取 ID
 

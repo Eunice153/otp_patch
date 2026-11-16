@@ -3,30 +3,17 @@
 所有脚本都在 `otp_patch/test_tools/sm3/` 下，报告统一写入
 `otp_patch/test_tools/sm3/sm3_report/`。
 
+只保留 NO3 的 `0x41 SM3_BULK` 测试；短 SM3 和流式测试已删除。
+
 ## 公共前提
 
 - WSL 下 `python3 <script> COM24` 会自动转用 Windows Python。
 - 运行前关闭占用 COM 口的串口工具。
 - 依赖 pyserial。
 - SM3 不使用密钥，不涉及 OTP。
-- 0x10 单帧 DATA ≤512B。
 - NO3 的 0x41 是 4 字节 LEN 的逻辑大帧，最大 128KB。
-- 流式 0x1A/0x1B/0x1C 已删除。
 
-## 1. 0x10 单帧
-
-脚本：`sm3/sm3单帧/sm3_oneshot.py`
-
-```bash
-python3 sm3/sm3单帧/sm3_oneshot.py COM24
-python3 sm3/sm3单帧/sm3_oneshot.py COM24 --data "616263"
-```
-
-- 默认 5 组：空数据、1B、abc、64B、512B。
-- 设备 0x10 返回 32B 摘要，和 Python hashlib(SM3) 比较。
-- 报告：`sm3_report/sm3_oneshot_report.md`
-
-## 2. 0x41 单帧大数据（仅 NO3）
+## 1. 0x41 单帧大数据（仅 NO3）
 
 脚本：`sm3/sm3单帧/sm3_oneshot_41.py`
 
@@ -51,30 +38,7 @@ Invoke_SM3_cal -> 32B 摘要
 - 请求可以一次 write，也可以拆 n 次；应答可以分 n 次 read。
 - 报告：`sm3_report/sm3_oneshot_41_report.md`
 
-## 3. 0x10 非正常输入
-
-脚本：`sm3/sm3异常输入/sm3_abnormal.py`
-
-```bash
-python3 sm3/sm3异常输入/sm3_abnormal.py COM24
-```
-
-覆盖：
-
-- 基线 0x10 "abc"
-- 0x10 空数据
-- 0x10 512B（普通帧上限）
-- 64B 全 0x00 / 全 0xFF / 全 0x5A / 00-FF 交替
-- 0x10 LEN=513（帧层超过 512，固件丢弃，无应答）
-
-全 00/FF/5A 是合法 SM3 输入，应返回 0x00 + 正确摘要。
-
-报告：`sm3_report/sm3_abnormal_report.md`
-
-- 列：序号 / 非正常输入 / 完整发送数据 / 完整返回数据 /
-  设备响应 / 预期 / 结论。
-
-## 4. 0x41 非正常输入（仅 NO3）
+## 2. 0x41 非正常输入（仅 NO3）
 
 脚本：`sm3/sm3异常输入/sm3_abnormal_41.py`
 
@@ -97,7 +61,7 @@ SM3 算法本身没有非法内容；全 00/FF/5A 都是合法输入，
 - 超过 512B 的发送帧只记录长度、首尾字节和 SHA256；
   设备返回的摘要完整列出。
 
-## 5. 速率测试（仅 NO3）
+## 3. 速率测试（仅 NO3）
 
 脚本：`sm3/sm3_speed/sm3_speed.py`
 
@@ -126,9 +90,7 @@ python3 sm3/sm3_speed/sm3_speed.py COM24 --size 131072 --runs 3
 
 ```text
 otp_patch/test_tools/sm3/sm3_report/
-├── sm3_oneshot_report.md
 ├── sm3_oneshot_41_report.md
-├── sm3_abnormal_report.md
 ├── sm3_abnormal_41_report.md
 └── sm3_speed_report.md
 ```

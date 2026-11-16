@@ -8,7 +8,6 @@
   - CBC 缺 IV / IV 后数据不是 16 的倍数
 
 发送的是 0x40 大帧（4 字节 LEN），应答也是 4 字节 LEN。
-原 0x20 脚本 sm4_abnormal.py 保留不变。
 报告默认写入 ../../sm4_report/sm4_abnormal_40_report.md。
 """
 
@@ -103,7 +102,7 @@ def main():
     md.append("安全说明：只使用临时槽 5（RAM），不发送 SET_PASSWORD / "
               "KEY_STORE / KEY_DESTROY，不写 OTP。\n\n")
     md.append("说明：本脚本发送 NO3 的 `0x40 SM4_BULK`（4 字节 LEN）；"
-              "原 `0x20` 版本 `sm4_abnormal.py` 保留。\n\n")
+              "本脚本使用 NO3 的 `0x40 SM4_BULK`。\n\n")
     md.append("| 序号 | 非正常输入 | 完整发送数据 | 完整返回数据 | "
               "设备响应 | 预期 | 结论 |\n")
     md.append("|---|---|---|---|---|---|---|\n")

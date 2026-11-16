@@ -8,7 +8,6 @@
       0x40 ECB 加密 -> 设备密文 vs Python 参考
       0x40 ECB 解密 -> 设备明文 vs 原文
 
-原 0x20 脚本 sm4_ecb.py 保留不变。
 报告默认写入 ../../sm4_report/sm4_ecb_40_report.md。
 """
 
@@ -110,8 +109,7 @@ def main():
     md.append("测试时间：%s\n\n" % now_str())
     md.append("安全说明：只使用临时槽 5（RAM），不发送 SET_PASSWORD / "
               "KEY_STORE / KEY_DESTROY，不写 OTP。\n\n")
-    md.append("说明：本脚本用 NO3 的 `0x40 SM4_BULK`；原 `0x20` 版本 "
-              "`sm4_ecb.py` 保留。\n\n")
+    md.append("说明：本脚本用 NO3 的 `0x40 SM4_BULK`。\n\n")
     md.append("测试参数：\n\n")
     md.append("- 串口：%s，%d bps\n" % (args.port, args.baud))
     md.append("- 密钥 K（16B，临时）：`%s`\n"

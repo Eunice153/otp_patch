@@ -1,7 +1,7 @@
 SM4 密钥导入（0x40 验证）read_me
 /*密钥的导入需要otp槽位有数据需要借助otp槽位 0 1解密导入的密钥*/
 一、用途
-和原 sm4_key_import.py 功能一样：
+
     KEY_LOAD(dec_id, 口令)            可选：只读加载 OTP 密钥到 SRAM
     GETPUBKEY(dec_id)                 只读 OTP 公钥
     上位机生成/指定 16B SM4 密钥
@@ -10,8 +10,7 @@ SM4 密钥导入（0x40 验证）read_me
     EXPORT_KEY(5,1) 导出并比对
     ECB 加密/解密验证导入密钥
 
-区别：最后的 ECB 验证走 NO3 的 0x40，不是 0x20。
-原 sm4_key_import.py 保留不变。
+最后的 ECB 验证走 NO3 的 0x40。
 
 二、重要前提
 必须已有 OTP SM2 解密密钥（dec_id=0）或签名密钥（dec_id=1），

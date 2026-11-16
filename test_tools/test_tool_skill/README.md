@@ -22,16 +22,14 @@ otp_patch/test_tools/
 │   ├── sm2签名验签/sm2_sign_verify.py
 │   └── sm2_report/                 # 所有 SM2 脚本的默认报告目录
 ├── sm4/
-│   ├── sm4密钥生成/sm4_key.py
-│   ├── sm4ecb加解密/sm4_ecb.py
-│   ├── sm4cbc加解密/sm4_cbc.py
-│   ├── sm4密钥导入导出/sm4_key_import.py
-│   ├── sm4异常输入/sm4_abnormal.py
+│   ├── sm4密钥生成/sm4_key_40.py
+│   ├── sm4ecb加解密/sm4_ecb_40.py
+│   ├── sm4cbc加解密/sm4_cbc_40.py
+│   ├── sm4密钥导入导出/sm4_key_import_40.py
+│   ├── sm4异常输入/sm4_abnormal_40.py
 │   └── sm4_report/                 # 所有 SM4 脚本的默认报告目录
 ├── sm3/
-│   ├── sm3单帧/sm3_oneshot.py       # 0x10
 │   ├── sm3单帧/sm3_oneshot_41.py    # NO3 0x41
-│   ├── sm3异常输入/sm3_abnormal.py  # 0x10
 │   ├── sm3异常输入/sm3_abnormal_41.py # NO3 0x41
 │   └── sm3_report/                 # 所有 SM3 脚本的默认报告目录
 ├── 指令自检/selftest.py            # SELFTEST 0x50
@@ -73,9 +71,7 @@ python3 sm2/sm2签名验签/sm2_sign_verify.py COM24
 python3 "sm2/sm2加解密密钥导入/sm2_key_import.py" COM24
 
 # SM3
-python3 sm3/sm3单帧/sm3_oneshot.py COM24
 python3 sm3/sm3单帧/sm3_oneshot_41.py COM24
-python3 sm3/sm3异常输入/sm3_abnormal.py COM24
 python3 sm3/sm3异常输入/sm3_abnormal_41.py COM24
 
 # 指令自检 / 读取 ID
@@ -83,11 +79,11 @@ python3 指令自检/selftest.py COM24
 python3 读取id/get_uid.py COM24
 
 # SM4
-python3 sm4/sm4密钥生成/sm4_key.py COM24
-python3 sm4/sm4ecb加解密/sm4_ecb.py COM24
-python3 sm4/sm4cbc加解密/sm4_cbc.py COM24
-python3 sm4/sm4异常输入/sm4_abnormal.py COM24
-python3 sm4/sm4密钥导入导出/sm4_key_import.py COM24
+python3 sm4/sm4密钥生成/sm4_key_40.py COM24
+python3 sm4/sm4ecb加解密/sm4_ecb_40.py COM24
+python3 sm4/sm4cbc加解密/sm4_cbc_40.py COM24
+python3 sm4/sm4异常输入/sm4_abnormal_40.py COM24
+python3 sm4/sm4密钥导入导出/sm4_key_import_40.py COM24
 ```
 
 WSL 下检测到 `COMx` 会自动转用 Windows Python。报告默认写到

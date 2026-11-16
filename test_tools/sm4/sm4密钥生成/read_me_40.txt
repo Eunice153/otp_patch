@@ -8,15 +8,14 @@ SM4 密钥生成（0x40 自检）read_me
 结果一致，说明导出的密钥1和设备槽5里的密钥是同一把。
 */
 一、用途
-和原 sm4_key.py 功能一样：
+
     GENKEY(5)
     LOAD_PUBKEY(TEST_D 公钥)
     EXPORT_KEY(5,1)
     上位机用 TEST_D 解出 16B SM4 密钥
     用该密钥做 ECB 加密/解密自检
 
-区别：自检走 NO3 的 0x40 SM4_BULK，不是 0x20。
-原 sm4_key.py 保留不变。
+自检走 NO3 的 0x40 SM4_BULK。
 
 二、前提
 - 固件必须是 NO3；NO2 没有 0x40。

@@ -4,7 +4,7 @@
 
 安全说明：`KEY_LOAD` 只读加载 OTP 密钥到 SRAM；`KEY_IMPORT` 只写临时槽 5（RAM）。本脚本不发送 SET_PASSWORD / KEY_STORE / KEY_DESTROY，不写 OTP。
 
-说明：本脚本用 NO3 的 `0x40 SM4_BULK` 做导入后 ECB 验证；原 `0x20` 版本 `sm4_key_import.py` 保留。
+说明：本脚本用 NO3 的 `0x40 SM4_BULK` 做导入后 ECB 验证。
 
 | 项目 | 值 |
 |---|---|
